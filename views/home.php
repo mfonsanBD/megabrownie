@@ -33,7 +33,7 @@
 				<li class="menu-active"><a href="#home">Início</a></li>
 				<li><a href="#about">Sobre Nós</a></li>
 				<li><a href="#menu">Menu</a></li>
-				<li><a href="#noticias">Notícias</a></li>
+				<!-- <li><a href="#noticias">Notícias</a></li> -->
 				<li><a href="#contato">Contato</a></li>
 	        </ul>
 	      </nav><!-- #nav-menu-container -->		    		
@@ -51,7 +51,7 @@
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
 						<li>
-							<a href="<?=URL_BASE?>login/" class="primary-btn text-uppercase">Faça Agora seu pedido</a>
+							<a href="#contato" class="primary-btn text-uppercase">Entre em contato</a>
 						</li>
 					</ul>
 				</nav>
@@ -167,7 +167,7 @@
 		</div>
 	</div>	
 </section>
-<section class="review-area section-gap" id="noticias">
+<!-- <section class="review-area section-gap" id="noticias">
 	<div class="container">
 		<div class="row d-flex justify-content-center">
 			<div class="menu-content pb-60 col-lg-10">
@@ -210,7 +210,7 @@
 			</div>
 		</div>
 	</div>	
-</section>
+</section> -->
 <!-- End blog Area -->
 
 <!-- Start blog Area -->
