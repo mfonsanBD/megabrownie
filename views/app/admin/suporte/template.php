@@ -45,6 +45,8 @@
     <script src="<?=URL_BASE?>assets/js/paginas/pedidos.js"></script>
     <script src="<?=URL_BASE?>assets/js/paginas/clientes.js"></script>
     <script src="<?=URL_BASE?>assets/js/paginas/produtos.js"></script>
+    <script src="<?=URL_BASE?>assets/js/paginas/blog.js"></script>
+    <script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>
 
     <script src="<?=URL_BASE?>app/assets/vendors/js/datatables/datatables.min.js"></script>
     <script>
@@ -75,6 +77,9 @@
                 }
             });
         });
+    </script>
+    <script>
+        CKEDITOR.replace( 'texto_blog' );
     </script>
     <script src="<?=URL_BASE?>app/assets/vendors/js/datatables/dataTables.buttons.min.js"></script>
     <script src="<?=URL_BASE?>app/assets/vendors/js/datatables/jszip.min.js"></script>

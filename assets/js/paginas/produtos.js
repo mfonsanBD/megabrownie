@@ -52,7 +52,6 @@ $('#modalExPr').on('show.bs.modal', function(event){
 		});
 	});
 });
-
 $("#cadastroProduto").submit(function(e){
 		e.preventDefault();
 		var nome 		= $("#nome").val();
@@ -208,7 +207,75 @@ $('#modalEdPr').on('show.bs.modal', function(event){
 				contentType: false,
 				processData: false,
 				success: function(dados){
-					alert(dados);
+					if (dados == 1) {
+						swal({
+							title: "Parabéns!", 
+							text: "Imagem adicionada com sucesso.",
+							icon: "success",
+							buttons: {
+								confirm: {
+								    text: "Ok",
+								    value: true,
+								    visible: true,
+								    className: "bg-success",
+								    closeModal: true
+								}
+							}
+						})
+						.then((resposta) => {
+							window.location.reload();
+						});
+					}
+					else if (dados == 2) {
+						swal({
+							title: "Atenção!",
+							text: "Tipo de imagem inválida.",
+							icon: "warning",
+							buttons: {
+								confirm: {
+								    text: "Ok!",
+								    value: true,
+								    visible: true,
+								    className: "bg-warning",
+								    closeModal: true
+								}
+							}
+						});
+					}
+					else if (dados == 3) {
+						swal({
+							title: "Atenção!",
+							text: "O tamanho da imagem excede o permitido.",
+							icon: "warning",
+							buttons: {
+								confirm: {
+								    text: "Ok!",
+								    value: true,
+								    visible: true,
+								    className: "bg-warning",
+								    closeModal: true
+								}
+							}
+						});
+					}else{
+						swal({
+							title: "Parabéns!", 
+							text: "Imagem alterada com sucesso.",
+							icon: "success",
+							buttons: {
+								confirm: {
+								    text: "Ok",
+								    value: true,
+								    visible: true,
+								    className: "bg-success",
+								    closeModal: true
+								}
+							}
+						})
+						.then((resposta) => {
+							window.location.reload();
+						});
+					}
 				}
 			});
 		}

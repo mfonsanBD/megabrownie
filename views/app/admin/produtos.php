@@ -160,7 +160,7 @@
       <div class="modal-body text-center">
         <label for="fotoProduto" class="btn bg-padrao btn-sm mt-2">Escolha a imagem do produto</label>
             <div >
-                <input type="file" id="fotoProduto" name="fotoProduto" />
+                <input type="file" class="form-control mb-3" id="fotoProduto" name="fotoProduto" />
                 <button type="submit" class="btn btn-primary" id="but_upload">Enviar</button>
             </div>
       </div>
