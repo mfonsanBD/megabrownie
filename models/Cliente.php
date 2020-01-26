@@ -66,6 +66,17 @@ class Cliente extends model{
 
 		return $array;
 	}
+	public function info($id){
+		$array = array();
+		$sql = $this->conexao->prepare("SELECT * FROM cliente WHERE idCliente = ?");
+		$sql->execute(array($id));
+
+		if ($sql->rowCount() > 0) {
+			$array = $sql->fetch();
+		}
+
+		return $array;
+	}
 	public function excluiCliente($id){
 		$sql = $this->conexao->prepare("DELETE FROM cliente WHERE idCliente = ?");
 		$sql->execute(array($id));

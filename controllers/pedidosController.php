@@ -11,6 +11,10 @@ class pedidosController extends admin{
 				$this->loadTemplate('admin/pedidos', $dados);
 			break;
 			case 1:
+				$pedidos 				= new Pedido();
+				$id 					= $_SESSION['logado'];
+				$listaPedidos 			= $pedidos->listaPedidosCliente($id);
+				$dados['listaPedidos']	= $listaPedidos;
 				$this->loadTemplate('cliente/pedidos', $dados);
 			break;
 			default:

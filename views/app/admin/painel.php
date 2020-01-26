@@ -8,19 +8,49 @@
                         <div class="row">
                             <div class="col-xl-12 d-flex flex-column justify-content-center align-items-center">
                                 <div class="counter"><?=$qtdClientes;?></div>
-                                <div class="total-views">Clientes Registrados</div>
+                                <div class="total-views text-capitalize text-center">
+                                    <?php
+                                        switch ($qtdClientes) {
+                                            case 0:
+                                                echo "Nenhum cliente registrado";
+                                            break;
+                                            case 1:
+                                                echo "cliente registrado";
+                                            break;
+                                            
+                                            default:
+                                                echo "clientes registrados";
+                                            break;
+                                        }
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                <div class="widget widget-16">
+                <div class="widget widget-16 has-shadow">
                     <div class="widget-body">
                         <div class="row">
                             <div class="col-xl-12 d-flex flex-column justify-content-center align-items-center">
                                 <div class="counter"><?=$qtdPedidos;?></div>
-                                <div class="total-views">Pedidos</div>
+                                <div class="total-views text-capitalize text-center">
+                                    <?php
+                                        switch ($qtdPedidos) {
+                                            case 0:
+                                                echo "Nenhum pedido feito";
+                                            break;
+                                            case 1:
+                                                echo "pedido feito";
+                                            break;
+                                            
+                                            default:
+                                                echo "pedidos feitos";
+                                            break;
+                                        }
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -32,19 +62,49 @@
                         <div class="row">
                             <div class="col-xl-12 d-flex flex-column justify-content-center align-items-center">
                                 <div class="counter"><?=$qtdPedidosPendentes;?></div>
-                                <div class="total-views">Pedidos Pendentes</div>
+                                <div class="total-views text-capitalize text-center">
+                                    <?php
+                                        switch ($qtdPedidosPendentes) {
+                                            case 0:
+                                                echo "Nenhum pedido prendente";
+                                            break;
+                                            case 1:
+                                                echo "pedido prendente";
+                                            break;
+                                            
+                                            default:
+                                                echo "pedidos prendentes";
+                                            break;
+                                        }
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                <div class="widget widget-17">
+                <div class="widget widget-16 has-shadow">
                     <div class="widget-body">
                         <div class="row">
                             <div class="col-xl-12 d-flex flex-column justify-content-center align-items-center">
                                 <div class="counter"><?=$qtdPedidosEntregues;?></div>
-                                <div class="total-visitors">Pedidos Entregues</div>
+                                <div class="total-views text-capitalize text-center">
+                                    <?php
+                                        switch ($qtdPedidosEntregues) {
+                                            case 0:
+                                                echo "Nenhum pedido entregue";
+                                            break;
+                                            case 1:
+                                                echo "pedido entregue";
+                                            break;
+                                            
+                                            default:
+                                                echo "pedidos entregues";
+                                            break;
+                                        }
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -84,7 +144,7 @@
                                                         </span>
                                                     </td>
                                                     <td><?=$lp['nomeCliente']." ".$lp['sobrenomeCliente']?></td>
-                                                    <td><?=date('d/m/Y', strtotime($lp['dataPedido']))?></td>
+                                                    <td><?=date('d/m/Y - H:i', strtotime($lp['dataPedido']))?></td>
                                                     <td>
                                                         <span style="width:100px;">
                                                             <?php if ($lp['estado'] == 0) { ?>
@@ -184,14 +244,14 @@
                                                                                 Horário do Pedido:<br>
                                                                                 <span class="text-primary"><?=date('H:i', strtotime($lp['dataPedido']))?></span>
                                                                             </div>
-                                                                            <div class="col-lg-12 mb-5">
+                                                                            <div class="col-lg-12 mb-4 text-center">
                                                                                 Endereço para entrega:<br>
-                                                                                <span class="text-primary">
+                                                                                <span class="text-primary text-capitalize">
                                                                                     <?php
-                                                                                        echo $lp['logradouro'].", Nº:".$lp['numero'].", ".$lp['complemento'];
+                                                                                        echo $lp['logradouro'].", Nº: ".$lp['numero'].", ".$lp['complemento'];
                                                                                     ?>
-                                                                                </span>
-                                                                                <span class="text-primary">
+                                                                                </span><br>
+                                                                                <span class="text-primary text-capitalize">
                                                                                     <?php
                                                                                         echo $lp['referencia']." - ".$lp['bairro']." - ".$lp['cidade'];
                                                                                     ?>

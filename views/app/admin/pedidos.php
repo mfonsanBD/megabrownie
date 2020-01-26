@@ -51,7 +51,7 @@
                                                         </span>
                                                     </td>
                                                     <td><?=$lp['nomeCliente']." ".$lp['sobrenomeCliente']?></td>
-                                                    <td><?=date('d/m/Y', strtotime($lp['dataPedido']))?></td>
+                                                    <td><?=date('d/m/Y - H:i', strtotime($lp['dataPedido']))?></td>
                                                     <td>
                                                         <span style="width:100px;">
                                                             <?php if ($lp['estado'] == 0) { ?>

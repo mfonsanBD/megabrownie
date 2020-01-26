@@ -46,6 +46,7 @@
     <script src="<?=URL_BASE?>assets/js/paginas/clientes.js"></script>
     <script src="<?=URL_BASE?>assets/js/paginas/produtos.js"></script>
     <script src="<?=URL_BASE?>assets/js/paginas/blog.js"></script>
+    <script src="<?=URL_BASE?>assets/js/paginas/painel-cliente.js"></script>
     <script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>
 
     <script src="<?=URL_BASE?>app/assets/vendors/js/datatables/datatables.min.js"></script>
@@ -54,7 +55,8 @@
             $('#tabela_produtos').dataTable({
                 "language": {
                     "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese.json"
-                }
+                },
+                "order": [[ 2, "desc" ]]
             });
             $('#pagina_produtos').dataTable({
                 "language": {
@@ -64,7 +66,8 @@
             $('#tabela_mais_pedidos').dataTable({
                 "language": {
                     "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese.json"
-                }
+                },
+                "order": [[ 2, "desc" ]]
             });
             $('#tabela_clientes').dataTable({
                 "language": {
@@ -72,6 +75,18 @@
                 }
             });
             $('#tabela_blog').dataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese.json"
+                },
+                "order": [[3, "desc" ]]
+            });
+            $('#pedidos_cliente').dataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese.json"
+                },
+                "order": [[3, "desc" ]]
+            });
+            $('#endereco_cliente').dataTable({
                 "language": {
                     "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese.json"
                 }

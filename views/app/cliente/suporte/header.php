@@ -13,6 +13,10 @@
                             </div>
                         </a>
                     </div>
+                    <div class="text-center">
+                        <h1 class="text-white">Olá, <?=$this->nomeCliente;?></h1>
+                        <span>Seja Bem Vindo! O que vamos pedir hoje?</span>
+                    </div>
                     <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center pull-right">
                         <li>
                             <a rel="nofollow" href="<?=URL_BASE?>sair/" class="btn btn-danger logout text-center">
@@ -25,32 +29,3 @@
         </div>
     </header>
     <div class="page-content mb-5">
-        <div class="horizontal-menu">
-            <div class="container">
-                <div class="row">
-                    <nav class="navbar navbar-light navbar-expand-lg main-menu">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav mr-auto">
-                                <li class="<?=($this->titulo == "Painel de Controle") ? 'active' : ''?>">
-                                    <a href="<?=URL_BASE?>painel/">Painel de Controle</a>
-                                </li>
-                                <li class="<?=($this->titulo == "Pedidos") ? 'active' : ''?>">
-                                    <a href="<?=URL_BASE?>pedidos/">Pedidos</a>
-                                </li>
-                                <li class="<?=($this->titulo == "Endereço") ? 'active' : ''?>">
-                                    <a href="<?=URL_BASE?>endereco/">Endereço</a>
-                                </li>
-                                <li class="<?=($this->titulo == "Menu") ? 'active' : ''?>">
-                                    <a href="<?=URL_BASE?>menu/">Menu</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>

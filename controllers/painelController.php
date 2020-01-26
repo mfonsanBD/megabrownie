@@ -31,11 +31,61 @@ class painelController extends admin{
 				$this->loadTemplate('admin/painel', $dados);
 			break;
 			case 1:
+				$id = $_SESSION['logado'];
+				
+				$cliente = new Cliente();
+				$infoCLiente = $cliente->info($id);
+
+				$this->nomeCliente = $infoCLiente['nomeCliente']." ".$infoCLiente['sobrenomeCliente'];
+
+				$pedidos 							= new Pedido();
+
+				$listaPedidos 						= $pedidos->listaPedidosCliente($id);
+				$dados['listaPedidos']				= $listaPedidos;
+
+				$qtdPedidos 						= $pedidos->qtdPedidosCliente($id);
+				$dados['qtdPedidos'] 				= $qtdPedidos;
+
+				$qtdPedidosPendentes 				= $pedidos->qtdPedidosPendentesCliente($id);
+				$dados['qtdPedidosPendentes'] 		= $qtdPedidosPendentes;
+
+				$qtdPedidosEmPreparo 				= $pedidos->qtdPedidosEmPreparoCliente($id);
+				$dados['qtdPedidosEmPreparo'] 		= $qtdPedidosEmPreparo;
+				
+				$qtdPedidosEntregues 				= $pedidos->qtdPedidosEntreguesCliente($id);
+				$dados['qtdPedidosEntregues'] 		= $qtdPedidosEntregues;
+
+				$enderecos 							= new Endereco();
+
+				$listaEnderecos 					= $enderecos->listaEnderecosCliente($id);
+				$dados['listaEnderecos']			= $listaEnderecos;
+
+				$produtos 							= new Produto();
+				$listaProdutos 						= $produtos->listaProdutos();
+				$dados['listaProdutos'] 			= $listaProdutos;
+
 				$this->loadTemplate('cliente/painel', $dados);
 			break;
 			default:
 				header("Locatoin: ".URL_BASE."login/");
 			break;
+		}
+	}
+	public function meuPedido(){
+		if (isset($_POST) && !empty($_POST)) {
+			$clienteId 		= $_SESSION['logado'];
+			$enderecoId 	= addslashes(trim($_POST['endereco']));
+			$produtoId 		= addslashes(trim($_POST['produtoId']));
+			$qtdProduto 	= addslashes(trim($_POST['quantidade']));
+			$total			= addslashes(trim($_POST['total']));
+
+			$pedidos 		= new Pedido();
+
+			if ($pedidos->addPedido($clienteId, $enderecoId, $produtoId, $qtdProduto, $total)) {
+				echo 1;
+			}else{
+				echo 0;
+			}
 		}
 	}
 }

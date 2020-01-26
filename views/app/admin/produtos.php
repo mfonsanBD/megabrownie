@@ -22,7 +22,7 @@
                 <div class="widget has-shadow">
                     <div class="widget-body">
                         <div class="table-responsive">
-                            <table id="tabela_produtos" class="table mb-0">
+                            <table id="pagina_produtos" class="table mb-0">
                                 <thead>
                                     <tr>
                                         <th>Foto do Produto</th>

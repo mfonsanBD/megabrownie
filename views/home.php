@@ -167,53 +167,7 @@
 		</div>
 	</div>	
 </section>
-<!-- <section class="review-area section-gap" id="noticias">
-	<div class="container">
-		<div class="row d-flex justify-content-center">
-			<div class="menu-content pb-60 col-lg-10">
-				<div class="title text-center">
-					<h1 class="mb-10">Notícias</h1>
-					<p>Fique ligado(a) nas nossas novidades e dicas.</p>
-				</div>
-			</div>
-		</div>						
-		<div class="row">
-			<div class="col-lg-4 col-md-6 single-blog">
-				<img class="img-fluid mb-5" src="<?=URL_BASE?>assets/img/b1.jpg" alt="">
-				<a href="#"><h4>Notícia 01</h4></a>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore.
-				</p>
-				<p class="post-date text-white">
-					12/01/2020
-				</p>
-			</div>
-			<div class="col-lg-4 col-md-6 single-blog">
-				<img class="img-fluid mb-5" src="<?=URL_BASE?>assets/img/b2.jpg" alt="">
-				<a href="#"><h4>Notícia 02</h4></a>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore.
-				</p>
-				<p class="post-date text-white">
-					05/01/2020
-				</p>
-			</div>
-			<div class="col-lg-4 col-md-6 single-blog">
-				<img class="img-fluid mb-5" src="<?=URL_BASE?>assets/img/b2.jpg" alt="">
-				<a href="#"><h4>Notícia 03</h4></a>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore.
-				</p>
-				<p class="post-date text-white">
-					05/01/2020
-				</p>
-			</div>
-		</div>
-	</div>	
-</section> -->
-<!-- End blog Area -->
 
-<!-- Start blog Area -->
 <section class="contato-area section-gap" id="contato">
 	<div class="container">
 		<div class="row d-flex justify-content-center">
