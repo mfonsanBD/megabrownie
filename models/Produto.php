@@ -31,4 +31,14 @@ class Produto extends model{
 			return false;
 		}
 	}
+	public function enviarFoto($nomeArquivo, $id){
+		$sql = $this->conexao->prepare("UPDATE produto SET fotoProduto = ? WHERE idProduto = ?");
+		$sql->execute(array($nomeArquivo, $id));
+
+		if ($sql->rowCount() > 0) {
+			return true;
+		}else{
+			return false;
+		}
+	}
 }

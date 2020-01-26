@@ -43,7 +43,11 @@
                                             }
                                     ?>
                                         <tr>
-                                            <td><img src="<?=$foto?>" width="80" alt="<?=$lpr['nomeProduto']?>"></td>
+                                            <td>
+                                                <div class="fotoProduto">
+                                                    <img src="<?=$foto?>" alt="<?=$lpr['nomeProduto']?>">
+                                                </div>
+                                            </td>
                                             <td><span class="text-primary"><?=$lpr['nomeProduto']?></span></td>
                                             <td><?=$lpr['tipoProduto']?></td>
                                             <td><?=$lpr['sabor']?></td>
@@ -135,14 +139,6 @@
                     </div>
                 </div>
             </div>
-            <div class="text-center">
-                <div class='preview'>
-                    <img src="" id="img" width="100" height="100">
-                </div>
-                <div>
-                    <input type="file" id="file" name="file" />
-                </div>
-            </div>
             <div class="em-separator separator-dashed"></div>
             <div class="text-center">
                 <button class="btn btn-gradient-01" type="submit">Cadastrar Produto</button>
@@ -152,8 +148,7 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="modal fade" id="modalEdPr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalEdPr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content bg-light">
       <div class="modal-header bg-primary text-white">
@@ -164,17 +159,12 @@
       </div>
       <div class="modal-body text-center">
         <label for="fotoProduto" class="btn bg-padrao btn-sm mt-2">Escolha a imagem do produto</label>
-        <form method="post" action="" enctype="multipart/form-data" id="myform">
-            <div class='preview'>
-                <img src="" id="img" width="100" height="100">
-            </div>
             <div >
-                <input type="file" id="file" name="file" />
-                <input type="button" class="btn btn-primary" value="Upload" id="but_upload">
+                <input type="file" id="fotoProduto" name="fotoProduto" />
+                <button type="submit" class="btn btn-primary" id="but_upload">Enviar</button>
             </div>
-        </form>
       </div>
     </div>
   </div>
-</div> -->
+</div>
 <?php require 'suporte/footer.php' ?>

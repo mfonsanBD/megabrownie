@@ -186,4 +186,34 @@ $("#cadastroProduto").submit(function(e){
 		}
 });
 
+$('#modalEdPr').on('show.bs.modal', function(event){
+	var button = $(event.relatedTarget);
+	var id = button.data('id');
+	var nome = button.data('nome');
+	var modal = $(this);
+
+	modal.find('.modal-title').text('Enviar Foto do Produto: '+nome+'.');
+
+	$("#but_upload").click(function(){
+		var data = new FormData();
+		var arquivos = $("#fotoProduto")[0].files;
+
+		if (arquivos.length > 0) {
+			data.append('idProduto', id);
+			data.append('fotoProduto', arquivos[0]);
+			$.ajax({
+				type: "POST",
+				url: urlSite+"enviarFoto/",
+				data: data,
+				contentType: false,
+				processData: false,
+				success: function(dados){
+					alert(dados);
+				}
+			});
+		}
+	});
+});
+
+
 $('.valor').mask('#.##0,00', {reverse: true});

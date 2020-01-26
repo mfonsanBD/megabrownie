@@ -43,34 +43,36 @@ class produtosController extends admin{
 		}
 	}
 	public function enviarFoto(){
-		$id = $_POST['id'];
-		/* Getting file name */
-		$filename = $_FILES['file']['name'];
-		$filename = md5(rand(0, 9999).$filename);
+		if (isset($_FILES['fotoProduto'])) {
+			$id = $_POST['idProduto'];
+			$arquivo = $_FILES['fotoProduto'];
+			$nomeArquivo = md5($id).".jpg";
 
-		echo $id." - ".$filename;
+			$permitidos = array("image/png", "image/jpg", "image/jpeg");
+			$caminho = "assets/img/produto/".$id;
 
-		// /* Location */
-		// $location = BASE_URL."assets/img/produto/".$id."/".$filename;
-		// $uploadOk = 1;
-		// $imageFileType = pathinfo($location,PATHINFO_EXTENSION);
-
-		// /* Valid Extensions */
-		// $valid_extensions = array("jpg","jpeg","png");
-		// /* Check file extension */
-		// if( !in_array(strtolower($imageFileType),$valid_extensions) ) {
-		//    $uploadOk = 0;
-		// }
-
-		// if($uploadOk == 0){
-		//    echo 0;
-		// }else{
-		//    /* Upload file */
-		//    if(move_uploaded_file($_FILES['file']['tmp_name'], $location)){
-		//       echo $location;
-		//    }else{
-		//       echo 0;
-		//    }
-		// }
+			if (in_array($arquivo['type'], $permitidos)) {
+				if ($arquivo['size'] <= 2*1048576) {
+					echo "Tamanho do arquivo no padrão";
+					if (is_dir($caminho)) {
+						move_uploaded_file($arquivo['tmp_name'], "assets/img/produto/".$id."/".$nomeArquivo);
+					}else{
+						mkdir($caminho);
+						move_uploaded_file($arquivo['tmp_name'], "assets/img/produto/".$id."/".$nomeArquivo);
+					}
+					
+					$produtos = new Produto();
+					if ($produtos->enviarFoto($nomeArquivo, $id)) {
+						echo 1;
+					}else{
+						echo 0;
+					}
+				}else{
+					echo 3;
+				}
+			}else{
+				echo 2;
+			}
+		}
 	}
 }
