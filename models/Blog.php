@@ -31,4 +31,25 @@ class Blog extends model{
 			return false;
 		}
 	}
+	public function editaPostagem($titulo, $texto, $nomeimagem, $id){
+		$sql = $this->conexao->prepare("UPDATE blog SET tituloBlog = ?, textoBlog = ?, imagemBlog = ? WHERE idBlog = ?");
+		$sql->execute(array($titulo, $texto, $nomeimagem, $id));
+
+		if ($sql->rowCount() > 0) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function listaDadosId($id){
+		$array = array();
+		$sql = $this->conexao->prepare("SELECT * FROM blog WHERE idBlog = ?");
+		$sql->execute(array($id));
+
+		if ($sql->rowCount() > 0) {
+			$array = $sql->fetch();
+		}
+
+		return $array;
+	}
 }

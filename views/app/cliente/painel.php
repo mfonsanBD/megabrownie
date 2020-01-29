@@ -249,7 +249,7 @@
                                     <p>
                                         <?=$lpr['descricaoProduto'];?>
                                     </p>
-                                    <a class="genric-btn btn-primary p-2 text-white text-capitalize rounded mt-3" data-toggle="modal" data-target="#fazerPedido" data-id="<?=$lpr['idProduto'];?>" data-nome="<?=$lpr['nomeProduto'];?>" data-sabor="<?=$lpr['sabor'];?>" data-precouni="<?=$lpr['precoUnd'];?>">Eu quero esse!</a>
+                                    <a id="btn-pedido" class="genric-btn btn-primary pt-2 pb-2 pl-3 pr-3 text-white text-capitalize rounded mt-3" data-toggle="modal" data-target="#fazerPedido" data-id="<?=$lpr['idProduto'];?>" data-nome="<?=$lpr['nomeProduto'];?>" data-sabor="<?=$lpr['sabor'];?>" data-precouni="<?=$lpr['precoUnd'];?>">Eu quero esse!</a>
                                 </div>
                             </div>
                         <?php endforeach; ?>

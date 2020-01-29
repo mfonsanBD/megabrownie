@@ -67,7 +67,7 @@
                 "language": {
                     "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese.json"
                 },
-                "order": [[ 2, "desc" ]]
+                "order": [[ 1, "desc" ]]
             });
             $('#tabela_clientes').dataTable({
                 "language": {
@@ -78,7 +78,7 @@
                 "language": {
                     "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese.json"
                 },
-                "order": [[3, "desc" ]]
+                "order": [[2, "desc" ]]
             });
             $('#pedidos_cliente').dataTable({
                 "language": {
@@ -95,6 +95,7 @@
     </script>
     <script>
         CKEDITOR.replace( 'texto_blog' );
+        CKEDITOR.replace( 'edita_texto_blog' );
     </script>
     <script src="<?=URL_BASE?>app/assets/vendors/js/datatables/dataTables.buttons.min.js"></script>
     <script src="<?=URL_BASE?>app/assets/vendors/js/datatables/jszip.min.js"></script>

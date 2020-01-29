@@ -27,7 +27,6 @@
                                     <tr>
                                         <th>Imagem</th>
                                         <th>Título</th>
-                                        <th>Texto</th>
                                         <th>Data</th>
                                         <th>Ações</th>
                                     </tr>
@@ -43,10 +42,11 @@
                                         <tr>
                                             <td><img src="<?=$foto?>" width="80" alt="<?=$ln['tituloBlog']?>"></td>
                                             <td><span class="text-primary"><?=$ln['tituloBlog']?></span></td>
-                                            <td><?=mb_strimwidth($ln['textoBlog'], 0, 20, "...")?></td>
                                             <td><?=date('d/m/Y H:i:s', strtotime($ln['dataBlog']))?></td>
                                             <td class="td-actions">
-                                                <a href="#"><i class="la la-edit edit"></i></a>
+
+                                                <a data-toggle="modal" data-target="#modalEdNoticia" data-id="<?= $ln['idBlog']; ?>" data-titulo="<?= $ln['tituloBlog']; ?>"><i class="la la-edit edit"></i></a>
+
                                                 <a data-toggle="modal" data-target="#modalExNoticia" data-id="<?= $ln['idBlog']; ?>" data-nome="<?= $ln['tituloBlog'];?>"><i class="la la-close delete"></i></a>
                                             </td>
                                         </tr>
@@ -117,6 +117,53 @@
         <div class="em-separator separator-dashed"></div>
         <div class="text-center">
             <button class="btn btn-gradient-01" type="submit" id="addPost">Cadastrar Postagem</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="modalEdNoticia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered blog" role="document">
+    <div class="modal-content bg-light">
+      <div class="modal-header bg-primary">
+        <h3 class="modal-title text-white" id="exampleModalLabel"></h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row d-flex align-items-center mb-3">
+            <label class="col-lg-3 form-control-label d-flex justify-content-lg-end">Título da Postagem *</label>
+            <div class="col-lg-9">
+                <input type="text" class="form-control" id="edita_titulo" name="edita_titulo">
+            </div>
+        </div>
+        <div class="form-group row d-flex align-items-center mb-3">
+            <label class="col-lg-3 form-control-label d-flex justify-content-lg-end">Texto *</label>
+            <div class="col-lg-9">
+                <div class="input-group">
+                    <textarea type="text" class="form-control" id="edita_texto_blog" name="edita_texto_blog"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row d-flex align-items-center justify-content-lg-end mb-3">
+            <div class="col-lg-9">
+                <div class="input-group">
+                    <img id="preview" width="300">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row d-flex align-items-center mb-3">
+            <label class="col-lg-3 form-control-label d-flex justify-content-lg-end">Imagem de Destaque *</label>
+            <div class="col-lg-9">
+                <div class="input-group">
+                    <input type="file" class="form-control" id="edita_imagem_destaque" name="edita_imagem_destaque">
+                </div>
+            </div>
+        </div>
+        <div class="em-separator separator-dashed"></div>
+        <div class="text-center">
+            <button class="btn btn-gradient-01" type="submit" id="editaPost">Editar Postagem</button>
         </div>
       </div>
     </div>
