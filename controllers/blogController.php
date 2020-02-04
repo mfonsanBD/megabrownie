@@ -1,5 +1,9 @@
 <?php
-class blogController extends admin{
+namespace Controllers;
+use \Core\Admin;
+use \Models\Blog;
+
+class BlogController extends Admin{
 	public function index(){
 		$dados = array();
 		$this->titulo = "Blog";

@@ -1,5 +1,9 @@
 <?php
-class produtosController extends admin{
+namespace Controllers;
+use \Core\Admin;
+use \Models\Produto;
+
+class ProdutosController extends Admin{
 	public function index(){
 		$dados = array();
 		$this->titulo = "Produtos";

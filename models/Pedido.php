@@ -1,5 +1,8 @@
 <?php
-class Pedido extends model{
+namespace Models;
+use \Core\Model;
+
+class Pedido extends Model{
 	public function qtdPedidos(){
 		$array = array();
 		$sql = $this->conexao->prepare("SELECT COUNT(*) AS p FROM pedido");

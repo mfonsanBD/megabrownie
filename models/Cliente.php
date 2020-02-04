@@ -1,5 +1,8 @@
 <?php
-class Cliente extends model{
+namespace Models;
+use \Core\Model;
+
+class Cliente extends Model{
 	public function logar($email, $senha){
 		$sql = $this->conexao->prepare("SELECT * FROM cliente WHERE emailCliente = ? AND senhaCliente = ?");
 		$sql->execute(array($email, $senha));

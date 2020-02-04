@@ -1,5 +1,8 @@
 <?php
-class Produto extends model{
+namespace Models;
+use \Core\Model;
+
+class Produto extends Model{
 	public function listaProdutos(){
 		$array = array();
 		$sql = $this->conexao->prepare("SELECT * FROM produto");

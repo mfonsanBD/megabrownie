@@ -1,5 +1,9 @@
 <?php
-class pedidosController extends admin{
+namespace Controllers;
+use \Core\Admin;
+use \Models\Pedido;
+
+class PedidosController extends Admin{
 	public function index(){
 		$dados = array();
 		$this->titulo = "Pedidos";

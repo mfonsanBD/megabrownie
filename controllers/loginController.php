@@ -1,5 +1,9 @@
 <?php
-class loginController extends app{
+namespace Controllers;
+use \Core\App;
+use \Models\Cliente;
+
+class LoginController extends App{
 	public function index(){
 		$dados = array();
 		$this->titulo = "Login";
@@ -42,11 +46,6 @@ class loginController extends app{
 				echo 0;
 			}
 		}
-	}
-	public function cadastro(){
-		$dados = array();
-		$this->titulo = "Cadastro";
-		$this->loadTemplate('cadastro', $dados);
 	}
 	public function sair(){
 		unset($_SESSION['logado']);

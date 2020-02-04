@@ -1,5 +1,9 @@
 <?php
-class clientesController extends admin{
+namespace Controllers;
+use \Core\Admin;
+use \Models\Cliente;
+
+class ClientesController extends Admin{
 	public function index(){
 		$dados = array();
 		$this->titulo = "Clientes";

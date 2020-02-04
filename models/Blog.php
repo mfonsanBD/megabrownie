@@ -1,5 +1,8 @@
 <?php
-class Blog extends model{
+namespace Models;
+use \Core\Model;
+
+class Blog extends Model{
 	public function listaNoticias(){
 		$array = array();
 		$sql = $this->conexao->prepare("SELECT * FROM blog");

@@ -1,5 +1,9 @@
 <?php
-class cadastroController extends app{
+namespace Controllers;
+use \Core\App;
+use \Models\Cliente;
+
+class CadastroController extends App{
 	public function index(){
 		$dados = array();
 		$this->titulo = "Cadastro";

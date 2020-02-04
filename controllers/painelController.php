@@ -1,5 +1,12 @@
 <?php
-class painelController extends admin{
+namespace Controllers;
+use \Core\Admin;
+use \Models\Cliente;
+use \Models\Pedido;
+use \Models\Endereco;
+use \Models\Produto;
+
+class PainelController extends Admin{
 	public function index(){
 		if (empty($_SESSION['logado'])) {
 			header("Location: ".URL_BASE."login/");
