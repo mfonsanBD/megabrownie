@@ -48,12 +48,27 @@
                                                     <img src="<?=$foto?>" alt="<?=$lpr['nomeProduto']?>">
                                                 </div>
                                             </td>
-                                            <td><span class="text-primary"><?=$lpr['nomeProduto']?></span></td>
+                                            <td>
+                                                <span class="text-primary"><?=$lpr['nomeProduto']?></span><br>
+                                                <span class="desc"><?= $lpr['descricaoProduto'];?></span>
+                                            </td>
                                             <td><?=$lpr['tipoProduto']?></td>
                                             <td><?=$lpr['sabor']?></td>
                                             <td>R$ <?=number_format($lpr['precoUnd'], 2, ",", "."); ?></td>
                                             <td class="td-actions">
-                                                <a data-toggle="modal" data-target="#modalEdPr" data-id="<?= $lpr['idProduto']; ?>" data-nome="<?= $lpr['nomeProduto'];?>"><i class="la la-camera-retro edit"></i></a>
+                                                <a data-toggle="modal" data-target="#modalEdFotoPr" data-id="<?= $lpr['idProduto']; ?>" data-nome="<?= $lpr['nomeProduto'];?>"><i class="la la-camera-retro edit"></i></a>
+
+                                                <a data-toggle="modal" 
+                                                    data-target="#modalEdPr" 
+                                                    data-id="<?= $lpr['idProduto']; ?>"
+                                                    data-nome="<?= $lpr['nomeProduto'];?>"
+                                                    data-descricao="<?= $lpr['descricaoProduto'];?>"
+                                                    data-tipo="<?= $lpr['tipoProduto'];?>"
+                                                    data-sabor="<?= $lpr['sabor'];?>"
+                                                    data-valor="<?= number_format($lpr['precoUnd'], 2, ",", ".");?>"
+                                                >
+                                                    <i class="la la-edit edit"></i>
+                                                </a>
 
                                                 <a data-toggle="modal" data-target="#modalExPr" data-id="<?= $lpr['idProduto']; ?>" data-nome="<?= $lpr['nomeProduto'];?>"><i class="la la-close delete"></i></a>
                                             </td>
@@ -148,7 +163,7 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="modalEdPr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalEdFotoPr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content bg-light">
       <div class="modal-header bg-primary text-white">
@@ -163,6 +178,64 @@
                 <input type="file" class="form-control mb-3" id="fotoProduto" name="fotoProduto" />
                 <button type="submit" class="btn btn-primary" id="but_upload">Enviar</button>
             </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="modalEdPr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content bg-light">
+      <div class="modal-header bg-primary">
+        <h3 class="modal-title text-white" id="exampleModalLabel"></h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="needs-validation mt-3" id="edicaoDoProduto" novalidate>
+            <div class="form-group row d-flex align-items-center mb-3">
+                <label class="col-lg-4 form-control-label d-flex justify-content-lg-end">Nome do Produto*</label>
+                <div class="col-lg-5">
+                    <input type="text" class="form-control" id="nomeProdutoEdita">
+                </div>
+            </div>
+            <div class="form-group row d-flex align-items-center mb-3">
+                <label class="col-lg-4 form-control-label d-flex justify-content-lg-end">Descrição do Produto *</label>
+                <div class="col-lg-5">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="descricaoProdutoEdita">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row d-flex align-items-center mb-3">
+                <label class="col-lg-4 form-control-label d-flex justify-content-lg-end">Tipo de Produto *</label>
+                <div class="col-lg-5">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="tipoProdutoEdita">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row d-flex align-items-center mb-3">
+                <label class="col-lg-4 form-control-label d-flex justify-content-lg-end">Sabor *</label>
+                <div class="col-lg-5">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="saborProdutoEdita">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row d-flex align-items-center mb-3">
+                <label class="col-lg-4 form-control-label d-flex justify-content-lg-end">Valor Unit. *</label>
+                <div class="col-lg-5">
+                    <div class="input-group">
+                        <input type="text" class="form-control valor" id="valorProdutoEdita">
+                    </div>
+                </div>
+            </div>
+            <div class="em-separator separator-dashed"></div>
+            <div class="text-center">
+                <button class="btn btn-gradient-01" type="submit">Alterar Produto</button>
+            </div>
+        </form>
       </div>
     </div>
   </div>

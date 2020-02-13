@@ -44,4 +44,14 @@ class Produto extends Model{
 			return false;
 		}
 	}
+	public function editarProduto($nome, $descricao, $tipo, $sabor, $valor, $id){
+		$sql = $this->conexao->prepare("UPDATE produto SET nomeProduto = ?, descricaoProduto = ?, tipoProduto = ?, sabor = ?, precoUnd = ? WHERE idProduto = ?");
+		$sql->execute(array($nome, $descricao, $tipo, $sabor, $valor, $id));
+
+		if ($sql->rowCount() > 0) {
+			return true;
+		}else{
+			return false;
+		}
+	}
 }

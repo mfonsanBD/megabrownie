@@ -79,4 +79,23 @@ class ProdutosController extends Admin{
 			}
 		}
 	}
+	public function editarProduto(){
+		if (isset($_POST) && !empty($_POST)) {
+			$id 		= $_POST['id'];
+			$nome 		= addslashes(trim($_POST['nome']));
+			$descricao 	= addslashes(trim($_POST['descricao']));
+			$tipo 		= addslashes(trim($_POST['tipo']));
+			$sabor 		= addslashes(trim($_POST['sabor']));
+			$valor		= addslashes(trim($_POST['valor']));
+
+			$produtos = new Produto();
+
+			if ($produtos->editarProduto($nome, $descricao, $tipo, $sabor, $valor, $id)) {
+				echo 1;
+			}
+			else{
+				echo 0;
+			}
+		}
+	}
 }
