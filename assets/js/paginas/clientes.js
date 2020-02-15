@@ -67,197 +67,40 @@ $("#cadastroCliente").submit(function(e){
 		}
 
 		if(nome == ''){
-			swal({
-				title: "Atenção!",
-				text: "O campo NOME é obrigatório.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+			alertaAviso("O campo NOME é obrigatório.");
 		}
 		else if(!isNaN(nome)){
-			swal({
-				title: "Atenção!",
-				text: "O campo NOME não permite números.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+			alertaAviso("O campo NOME não permite números.");
 		}
 		else if(nome.length < 3){
-			swal({
-				title: "Atenção!",
-				text: "O campo NOME deve conter pelo menos 3 caracteres.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+			alertaAviso("O campo NOME deve conter pelo menos 3 caracteres.");
 		}
 		else if(sobrenome == ''){
-			swal({
-				title: "Atenção!",
-				text: "O campo SOBRENOME é obrigatório.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+			alertaAviso("O campo SOBRENOME é obrigatório.");
 		}
 		else if(!isNaN(sobrenome)){
-			swal({
-				title: "Atenção!",
-				text: "O campo SOBRENOME não permite números.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+			alertaAviso("O campo SOBRENOME não permite números.");
 		}
 		else if(sobrenome.length < 3){
-			swal({
-				title: "Atenção!",
-				text: "O campo SOBRENOME deve conter pelo menos 3 caracteres.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+			alertaAviso("O campo SOBRENOME deve conter pelo menos 3 caracteres.");
 		}
 		else if(telefone == ''){
-			swal({
-				title: "Atenção!",
-				text: "O campo TELEFONE é obrigatório.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+			alertaAviso("O campo TELEFONE é obrigatório.");
 		}
 		else if(email == ''){
-			swal({
-				title: "Atenção!",
-				text: "O campo E-MAIL é obrigatório.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+			alertaAviso("O campo E-MAIL é obrigatório.");
 		}
 		else if(!emailValido(email)){
-			swal({
-				title: "Atenção!",
-				text: "Digite um E-MAIL válido.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+			alertaAviso("Digite um E-MAIL válido.");
 		}
 		else if(senha == ''){
-			swal({
-				title: "Atenção!",
-				text: "O campo SENHA é obrigatório.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
-			$("#forcaSenha").html('');
+			alertaAviso("O campo SENHA é obrigatório.");
 		}
 		else if(csenha == ''){
-			swal({
-				title: "Atenção!",
-				text: "O campo CONFIRMAR SENHA é obrigatório.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+			alertaAviso("O campo CONFIRMAR SENHA é obrigatório.");
 		}
 		else if(csenha != senha){
-			swal({
-				title: "Atenção!",
-				text: "As senhas não coincidem.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+			alertaAviso("As senhas não coincidem.");
 		}
 		else{
 			$.ajax({
@@ -272,56 +115,14 @@ $("#cadastroCliente").submit(function(e){
 							data: {nome: nome, sobrenome:sobrenome, telefone:telefone, whatsapp:whatsapp, email:email, senha:senha},
 							success: function(dados){
 								if (dados == 1) {
-									swal({
-										title: "Parabéns!", 
-										text: "Cadastro realizado com sucesso.",
-										icon: "success",
-										buttons: {
-											confirm: {
-											    text: "Ok",
-											    value: true,
-											    visible: true,
-											    className: "bg-success",
-											    closeModal: true
-											}
-										}
-									})
-									.then((resposta) => {
-										window.location.reload();
-									});
+									alertaSucesso("Cadastro realizado com sucesso.");
 								}else{
-									swal({
-										title: "Erro!",
-										text: "Não foi possível realizar o cadastro. Tente novamente em alguns minutos.",
-										icon: "danger",
-										buttons: {
-											confirm: {
-											    text: "Ok, vou corrigir!",
-											    value: true,
-											    visible: true,
-											    className: "bg-warning",
-											    closeModal: true
-											}
-										}
-									});
+									alertaErro("Não foi possível realizar o cadastro. Tente novamente em alguns minutos.");
 								}
 							}
 						});
 					}else{
-						swal({
-							title: "Aviso!",
-							text: "E-mail já cadastrado em nosso sistema.",
-							icon: "warning",
-							buttons: {
-								confirm: {
-								    text: "Ok, vou corrigir!",
-								    value: true,
-								    visible: true,
-								    className: "bg-warning",
-								    closeModal: true
-								}
-							}
-						});
+						alertaAviso("E-mail já cadastrado em nosso sistema.");
 					}
 				}
 			});
@@ -351,3 +152,54 @@ $("input[name='checkbox']").change(function(){
 		$("#wpp").addClass('d-flex');
 	}
 });
+function alertaSucesso(texto){
+	return swal({
+		title: "Parabéns!", 
+		text: texto,
+		icon: "success",
+		buttons: {
+			confirm: {
+			    text: "Ok",
+			    value: true,
+			    visible: true,
+			    className: "bg-success",
+			    closeModal: true
+			}
+		}
+	})
+	.then((resposta) => {
+		window.location.reload();
+	});
+}
+function alertaErro(texto){
+	return swal({
+		title: "Erro!", 
+		text: texto,
+		icon: "error",
+		buttons: {
+			confirm: {
+			    text: "Ok",
+			    value: true,
+			    visible: true,
+			    className: "bg-danger",
+			    closeModal: true
+			}
+		}
+	});
+}
+function alertaAviso(texto){
+	return swal({
+		title: "Aviso!", 
+		text: texto,
+		icon: "warning",
+		buttons: {
+			confirm: {
+			    text: "Ok",
+			    value: true,
+			    visible: true,
+			    className: "bg-warning",
+			    closeModal: true
+			}
+		}
+	});
+}

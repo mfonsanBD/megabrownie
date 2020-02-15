@@ -15,38 +15,9 @@ $('#modalExNoticia').on('show.bs.modal', function(event){
 			data: {id:id},
 			success: function(dados){
 				if(dados == 1){
-					swal({
-						title: "Parabéns!", 
-						text: "Postagem excluída com sucesso!", 
-						icon: "success",
-						buttons: {
-							confirm: {
-							    text: "Obrigado! 🙌🏼",
-							    value: true,
-							    visible: true,
-							    className: "bg-success",
-							    closeModal: true
-							}
-						}
-					})
-					.then((resposta) => {
-						window.location.reload();
-					});
+					alertaSucesso("Postagem excluída com sucesso!");
 				}else{
-					swal({
-						title: "Erro!", 
-						text: "A postagem não pôde ser excluída. Tente novamente mais tarde.", 
-						icon: "error",
-						buttons: {
-							confirm: {
-							    text: "Ok",
-							    value: true,
-							    visible: true,
-							    className: "bg-danger",
-							    closeModal: true
-							}
-						}
-					});
+					alertaErro("A postagem não pôde ser excluída. Tente novamente mais tarde.");
 				}
 			}
 		});
@@ -60,36 +31,10 @@ $("#addPost").click(function(){
 		var imagem 		= $("#imagem_destaque")[0].files;
 
 		if(titulo == ''){
-			swal({
-				title: "Atenção!",
-				text: "O campo TITULO DA POSTAGEM é obrigatório.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+			alertaAviso("O campo TITULO DA POSTAGEM é obrigatório.");
 		}
 		else if(texto == ''){
-			swal({
-				title: "Atenção!",
-				text: "O campo TEXTO é obrigatório.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+			alertaAviso("O campo TEXTO é obrigatório.");
 		}
 		else{
 			if (imagem.length > 0) {
@@ -104,92 +49,21 @@ $("#addPost").click(function(){
 					contentType: false,
 					processData: false,
 					success: function(dados){
-					if (dados == 1) {
-						swal({
-							title: "Parabéns!", 
-							text: "Postagem adicionada com sucesso.",
-							icon: "success",
-							buttons: {
-								confirm: {
-								    text: "Ok",
-								    value: true,
-								    visible: true,
-								    className: "bg-success",
-								    closeModal: true
-								}
-							}
-						})
-						.then((resposta) => {
-							window.location.reload();
-						});
-					}
-					else if (dados == 2) {
-						swal({
-							title: "Atenção!",
-							text: "Tipo de imagem de destaque inválida.",
-							icon: "warning",
-							buttons: {
-								confirm: {
-								    text: "Ok!",
-								    value: true,
-								    visible: true,
-								    className: "bg-warning",
-								    closeModal: true
-								}
-							}
-						});
-					}
-					else if (dados == 3) {
-						swal({
-							title: "Atenção!",
-							text: "O tamanho da imagem de destaque excede o permitido.",
-							icon: "warning",
-							buttons: {
-								confirm: {
-								    text: "Ok!",
-								    value: true,
-								    visible: true,
-								    className: "bg-warning",
-								    closeModal: true
-								}
-							}
-						});
-					}else{
-						swal({
-							title: "Erro!", 
-							text: "Não foi possível cadastrar a postagem. Tente novamente mais tarde.",
-							icon: "error",
-							buttons: {
-								confirm: {
-								    text: "Ok",
-								    value: true,
-								    visible: true,
-								    className: "bg-danger",
-								    closeModal: true
-								}
-							}
-						})
-						.then((resposta) => {
-							window.location.reload();
-						});
-					}
-					}
-				});
-			}else{
-				swal({
-					title: "Atenção!",
-					text: "O campo IMAGEM DE DESTAQUE é obrigatório.",
-					icon: "warning",
-					buttons: {
-						confirm: {
-						    text: "Ok!",
-						    value: true,
-						    visible: true,
-						    className: "bg-warning",
-						    closeModal: true
+						if (dados == 1) {
+							alertaSucesso("Postagem adicionada com sucesso.");
+						}
+						else if (dados == 2) {
+							alertaAviso("Tipo de imagem de destaque inválida.");
+						}
+						else if (dados == 3) {
+							alertaAviso("O tamanho da imagem de destaque excede o permitido.");
+						}else{
+							alertaErro("Não foi possível cadastrar a postagem. Tente novamente mais tarde.");
 						}
 					}
 				});
+			}else{
+				alertaAviso("O campo IMAGEM DE DESTAQUE é obrigatório.");
 			}
 		}
 });
@@ -212,6 +86,10 @@ $("#modalEdNoticia").on('show.bs.modal', function(event){
 			CKEDITOR.instances.edita_texto_blog.setData(dados.texto);
 			$("#preview").attr('src', dados.url_principal+'assets/img/blog/'+dados.imagem);
 
+			var titulo_antigo = dados.titulo;
+			var texto_antigo = dados.texto;
+			var imagem_antiga = dados.imagem;
+
 			$("#editaPost").click(function(e){
 				e.preventDefault();
 
@@ -220,14 +98,17 @@ $("#modalEdNoticia").on('show.bs.modal', function(event){
 
 				var novos_dados 	= new FormData();
 				var nova_imagem 	= $("#edita_imagem_destaque")[0].files;
-				
+
 				if (nova_imagem.length > 0) {
 					novos_dados.append('nova_imagem', nova_imagem[0]);
-				}else{
-					novos_dados.append('nova_imagem', '');
-					novos_dados.append('imagem_antiga', dados.imagem);
+					novos_dados.append('imagem_antiga', "");
+				}else{ 
+					novos_dados.append('imagem_antiga', imagem_antiga);
 				}
+
 				novos_dados.append('id', id);
+				novos_dados.append('titulo_antigo', titulo_antigo);
+				novos_dados.append('texto_antigo', texto_antigo);
 				novos_dados.append('novo_titulo', novo_titulo);
 				novos_dados.append('novo_texto', novo_texto);
 
@@ -238,79 +119,75 @@ $("#modalEdNoticia").on('show.bs.modal', function(event){
 					contentType: false,
 					processData: false,
 					success: function(dados){
-						console.log(dados);
-						// if (dados == 1) {
-						// 	swal({
-						// 		title: "Parabéns!", 
-						// 		text: "Postagem editada com sucesso.",
-						// 		icon: "success",
-						// 		buttons: {
-						// 			confirm: {
-						// 			    text: "Ok",
-						// 			    value: true,
-						// 			    visible: true,
-						// 			    className: "bg-success",
-						// 			    closeModal: true
-						// 			}
-						// 		}
-						// 	})
-						// 	.then((resposta) => {
-						// 		window.location.reload();
-						// 	});
-						// }
-						// else if (dados == 2) {
-						// 	swal({
-						// 		title: "Atenção!",
-						// 		text: "Tipo de imagem de destaque inválida.",
-						// 		icon: "warning",
-						// 		buttons: {
-						// 			confirm: {
-						// 			    text: "Ok!",
-						// 			    value: true,
-						// 			    visible: true,
-						// 			    className: "bg-warning",
-						// 			    closeModal: true
-						// 			}
-						// 		}
-						// 	});
-						// }
-						// else if (dados == 3) {
-						// 	swal({
-						// 		title: "Atenção!",
-						// 		text: "O tamanho da imagem de destaque excede o permitido.",
-						// 		icon: "warning",
-						// 		buttons: {
-						// 			confirm: {
-						// 			    text: "Ok!",
-						// 			    value: true,
-						// 			    visible: true,
-						// 			    className: "bg-warning",
-						// 			    closeModal: true
-						// 			}
-						// 		}
-						// 	});
-						// }else{
-						// 	swal({
-						// 		title: "Erro!", 
-						// 		text: "Não foi possível editar a postagem. Tente novamente mais tarde.",
-						// 		icon: "error",
-						// 		buttons: {
-						// 			confirm: {
-						// 			    text: "Ok",
-						// 			    value: true,
-						// 			    visible: true,
-						// 			    className: "bg-danger",
-						// 			    closeModal: true
-						// 			}
-						// 		}
-						// 	})
-						// 	.then((resposta) => {
-						// 		window.location.reload();
-						// 	});
-						// }
+						if (dados == 1) {
+							alertaSucesso("Postagem editada com sucesso.");
+						}
+						else if (dados == 2) {
+							alertaAviso("Tipo de imagem de destaque inválida.");
+						}
+						else if (dados == 3) {
+							alertaAviso("O tamanho da imagem de destaque excede o permitido.");
+						}
+						else if(dados == 4){
+							alertaAviso("Os dados são os atuais.");
+						}
+						else{
+							alertaErro("Não foi possível editar a postagem. Tente novamente mais tarde.");
+						}
 					}
 				});
 			});
 		}
 	});
 });
+function alertaSucesso(texto){
+	return swal({
+		title: "Parabéns!", 
+		text: texto,
+		icon: "success",
+		buttons: {
+			confirm: {
+			    text: "Ok",
+			    value: true,
+			    visible: true,
+			    className: "bg-success",
+			    closeModal: true
+			}
+		}
+	})
+	.then((resposta) => {
+		window.location.reload();
+	});
+}
+function alertaErro(texto){
+	return swal({
+		title: "Erro!", 
+		text: texto,
+		icon: "error",
+		buttons: {
+			confirm: {
+			    text: "Ok",
+			    value: true,
+			    visible: true,
+			    className: "bg-danger",
+			    closeModal: true
+			}
+		}
+	});
+}
+function alertaAviso(texto){
+	return swal({
+		title: "Aviso!", 
+		text: texto,
+		icon: "warning",
+		buttons: {
+			confirm: {
+			    text: "Ok",
+			    value: true,
+			    visible: true,
+			    className: "bg-warning",
+			    closeModal: true
+			}
+		}
+	});
+}

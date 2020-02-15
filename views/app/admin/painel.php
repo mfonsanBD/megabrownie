@@ -66,14 +66,14 @@
                                     <?php
                                         switch ($qtdPedidosPendentes) {
                                             case 0:
-                                                echo "Nenhum pedido prendente";
+                                                echo "Nenhum pedido pendente";
                                             break;
                                             case 1:
-                                                echo "pedido prendente";
+                                                echo "pedido pendente";
                                             break;
                                             
                                             default:
-                                                echo "pedidos prendentes";
+                                                echo "pedidos pendentes";
                                             break;
                                         }
                                     ?>

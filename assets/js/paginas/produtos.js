@@ -171,7 +171,6 @@ $('#modalEdPr').on('show.bs.modal', function(event){
 	});
 });
 $('.valor').mask('#.##0,00', {reverse: true});
-
 function alertaSucesso(texto){
 	return swal({
 		title: "Parabéns!", 

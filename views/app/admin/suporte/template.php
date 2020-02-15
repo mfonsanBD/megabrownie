@@ -47,48 +47,48 @@
     <script src="<?=URL_BASE?>assets/js/paginas/produtos.js"></script>
     <script src="<?=URL_BASE?>assets/js/paginas/blog.js"></script>
     <script src="<?=URL_BASE?>assets/js/paginas/painel-cliente.js"></script>
-    <script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>
+    <script src="<?=URL_BASE?>assets/js/ckeditor/ckeditor.js"></script>
 
     <script src="<?=URL_BASE?>app/assets/vendors/js/datatables/datatables.min.js"></script>
     <script>
         $(document).ready(function(){
             $('#tabela_produtos').dataTable({
                 "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese.json"
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
                 },
                 "order": [[ 2, "desc" ]]
             });
             $('#pagina_produtos').dataTable({
                 "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese.json"
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
                 }
             });
             $('#tabela_mais_pedidos').dataTable({
                 "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese.json"
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
                 },
                 "order": [[ 1, "desc" ]]
             });
             $('#tabela_clientes').dataTable({
                 "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese.json"
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
                 }
             });
             $('#tabela_blog').dataTable({
                 "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese.json"
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
                 },
                 "order": [[2, "desc" ]]
             });
             $('#pedidos_cliente').dataTable({
                 "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese.json"
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
                 },
                 "order": [[3, "desc" ]]
             });
             $('#endereco_cliente').dataTable({
                 "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese.json"
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
                 }
             });
         });

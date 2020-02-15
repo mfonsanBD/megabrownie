@@ -38,40 +38,62 @@ $('#fazerPedido').on('show.bs.modal', function(event){
 			success: function(dados){
 				console.log(dados);
 				if(dados == 1){
-					swal({
-						title: "Parabéns!", 
-						text: "Pedido realizado com sucesso.",
-						icon: "success",
-						buttons: {
-							confirm: {
-							    text: "Ok",
-							    value: true,
-							    visible: true,
-							    className: "bg-success",
-							    closeModal: true
-							}
-						}
-					})
-					.then((resposta) => {
-						window.location.reload();
-					});
+					alertaSucesso("Pedido realizado com sucesso.");
 				}else{
-					swal({
-						title: "Atenção!",
-						text: "Não foi possível realizar o pedido. Tente novamente mais tarde.",
-						icon: "warning",
-						buttons: {
-							confirm: {
-							    text: "Ok, vou corrigir!",
-							    value: true,
-							    visible: true,
-							    className: "bg-warning",
-							    closeModal: true
-							}
-						}
-					});
+					alertaErro("Não foi possível realizar o pedido. Tente novamente mais tarde.");
 				}
 			}
 		});
 	});
 });
+function alertaSucesso(texto){
+	return swal({
+		title: "Parabéns!", 
+		text: texto,
+		icon: "success",
+		buttons: {
+			confirm: {
+			    text: "Ok",
+			    value: true,
+			    visible: true,
+			    className: "bg-success",
+			    closeModal: true
+			}
+		}
+	})
+	.then((resposta) => {
+		window.location.reload();
+	});
+}
+function alertaErro(texto){
+	return swal({
+		title: "Erro!", 
+		text: texto,
+		icon: "error",
+		buttons: {
+			confirm: {
+			    text: "Ok",
+			    value: true,
+			    visible: true,
+			    className: "bg-danger",
+			    closeModal: true
+			}
+		}
+	});
+}
+function alertaAviso(texto){
+	return swal({
+		title: "Aviso!", 
+		text: texto,
+		icon: "warning",
+		buttons: {
+			confirm: {
+			    text: "Ok",
+			    value: true,
+			    visible: true,
+			    className: "bg-warning",
+			    closeModal: true
+			}
+		}
+	});
+}
