@@ -55,3 +55,33 @@
                 </div>
             </div>
         </div>
+		<div class="container-fluid p-0">
+		    <div class="col-lg-12 p-0">
+		        <div class="imagem_noticia">
+		            <img src="<?=URL_BASE.'assets/img/blog/'.$noticia['imagemBlog']?>" alt="<?=$noticia['tituloBlog']?>">
+		        </div>
+		    </div>
+		</div>
+
+		<div class="col-lg-6 mr-auto ml-auto p-5 titulo_noticia">
+			<h1 class="text-white text-center text-uppercase"><?=$noticia['tituloBlog']?></h1>
+			<p class="text-center mt-3 mb-0">
+				<i class="la la-calendar"></i> 
+				<span class="data_noticia"><?=date('d/m/Y', strtotime($noticia['dataBlog']))?></span>
+			</p>
+		</div>
+
+		<div class="container texto_noticia">
+			<?=$noticia['textoBlog']?>
+		</div>
+	</div>
+	<footer class="main-footer fixed-bottom">
+		<div class="container">
+		    <div class="row">
+		        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 d-flex align-items-center justify-content-xl-center justify-content-lg-center justify-content-md-center justify-content-center text-center">
+		            <p class="text-gradient-02">&copy; Copyright 2019 - <?= date('Y'). " - ".NOME_DO_SITE?>. Todos os direitos reservados.</p>
+		        </div>
+		    </div>
+		</div>
+	</footer>
+</div>

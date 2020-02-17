@@ -2,23 +2,52 @@
 namespace Controllers;
 use \Core\Admin;
 use \Models\Blog;
+use \Models\Cliente;
 
 class BlogController extends Admin{
 	public function index(){
 		$dados = array();
-		$this->titulo = "Blog";
 
-		$noticias = new Blog();
-		$listaNoticias 			= $noticias->listaNoticias();
+		switch ($_SESSION['tipo']) {
+			case 0:
+				$this->titulo = "Blog";
 
-		$dados['listaNoticias'] = $listaNoticias;
+				$noticias = new Blog();
+				$listaNoticias 			= $noticias->listaNoticias();
 
-		$this->loadTemplate('admin/blog', $dados);
+				$dados['listaNoticias'] = $listaNoticias;
+
+				$this->loadTemplate('admin/blog', $dados);
+			break;
+
+			case 1:
+				$this->titulo = "Notícias";
+
+				$id = $_SESSION['logado'];
+				
+				$cliente = new Cliente();
+				$infoCLiente = $cliente->info($id);
+
+				$this->nomeCliente = $infoCLiente['nomeCliente']." ".$infoCLiente['sobrenomeCliente'];
+				
+				$noticias = new Blog();
+				$listaNoticias 			= $noticias->listaNoticias();
+
+				$dados['listaNoticias'] = $listaNoticias;
+
+				$this->loadTemplate('cliente/blog', $dados);
+			break;
+
+			default:
+				header("Location: ".URL_BASE."sair/");
+			break;
+		}
 	}
 	public function adicionarPostagem(){
 		if (isset($_POST) && !empty($_POST)) {
 			$titulo 	= addslashes(trim($_POST['titulo']));
 			$texto 		= addslashes(trim($_POST['texto']));
+			$slug 		= addslashes(trim($_POST['slug']));
 			$imagem 	= $_FILES['imagem'];
 			$nomeimagem = md5(rand(0, 99999).date("d/m/Y H:i:s")).".jpg";
 			
@@ -35,7 +64,7 @@ class BlogController extends Admin{
 					}
 					
 					$blog = new Blog();
-					if ($blog->adicionarPostagem($titulo, $texto, $nomeimagem)) {
+					if ($blog->adicionarPostagem($titulo, $texto, $nomeimagem, $slug)) {
 						echo 1;
 					}else{
 						echo 0;
@@ -73,22 +102,40 @@ class BlogController extends Admin{
 			$id 				= $_POST['id'];
 			$titulo_antigo 		= addslashes(trim($_POST['titulo_antigo']));
 			$texto_antigo 		= addslashes(trim($_POST['texto_antigo']));
+			$slug_antigo 		= addslashes(trim($_POST['slug_antigo']));
+
 			$novo_titulo 		= addslashes(trim($_POST['novo_titulo']));
 			$novo_texto 		= addslashes(trim($_POST['novo_texto']));
+			$novo_slug 			= addslashes(trim($_POST['novo_slug']));
+
 			$novo_nome_imagem 	= md5(rand(0, 99999).date("d/m/Y H:i:s")).".jpg";
 
 			if (($titulo_antigo == $novo_titulo) && ($texto_antigo == $novo_texto) && ($_POST['imagem_antiga'] != "")){
 				echo 4;
 			}else if(($titulo_antigo != $novo_titulo) || ($texto_antigo != $novo_texto)){
+				
+				if ($slug_antigo == $novo_slug) {
+					$slug = $slug_antigo;
+				}else{
+					$slug = $novo_slug;
+				}
+
 				$imagem_antiga = $_POST['imagem_antiga'];
 
 				$blog = new Blog();
-				if ($blog->editaPostagem($novo_titulo, $novo_texto, $imagem_antiga, $id)) {
+				if ($blog->editaPostagem($novo_titulo, $novo_texto, $imagem_antiga, $slug, $id)) {
 					echo 1;
 				}else{
 					echo 0;
 				}
 			}else if(($_POST['imagem_antiga'] == "")){
+				
+				if ($slug_antigo == $novo_slug) {
+					$slug = $slug_antigo;
+				}else{
+					$slug = $novo_slug;
+				}
+
 				$nova_imagem 		= $_FILES['nova_imagem'];
 
 				$permitidos 		= array("image/png", "image/jpg", "image/jpeg");
@@ -104,7 +151,7 @@ class BlogController extends Admin{
 						}
 
 						$blog = new Blog();
-						if ($blog->editaPostagem($titulo_antigo, $texto_antigo, $novo_nome_imagem, $id)) {
+						if ($blog->editaPostagem($titulo_antigo, $texto_antigo, $novo_nome_imagem, $slug, $id)) {
 							echo 1;
 						}else{
 							echo 0;
@@ -129,10 +176,21 @@ class BlogController extends Admin{
 				'titulo' => $dados['tituloBlog'],
 				'texto' => $dados['textoBlog'],
 				'imagem' => $dados['imagemBlog'],
+				'slug' => $dados['slug'],
 				'url_principal' => URL_BASE
 			);
 
 			echo json_encode($array);
+		}
+	}
+	public function verificaSlug(){
+		if (isset($_POST) && !empty($_POST)) {
+			$slug = addslashes(trim($_POST['slug']));
+
+			$blog = new Blog();
+			$dados = $blog->verificaSlug($slug);
+
+			echo $dados;
 		}
 	}
 }

@@ -13,10 +13,6 @@
                             </div>
                         </a>
                     </div>
-                    <div class="text-center">
-                        <h1 class="text-white">Olá, <?=$this->nomeCliente;?></h1>
-                        <span>Seja Bem Vindo! O que vamos pedir hoje?</span>
-                    </div>
                     <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center pull-right">
                         <li>
                             <a rel="nofollow" href="<?=URL_BASE?>sair/" class="btn btn-danger logout text-center">
@@ -43,11 +39,17 @@
                                 <li class="<?=($this->titulo == "Painel de Controle") ? 'active' : ''?>">
                                     <a href="<?=URL_BASE?>painel/">Painel de Controle</a>
                                 </li>
-                                <li class="<?=($this->titulo == "Cardápio") ? 'active' : ''?>">
-                                    <a href="<?=URL_BASE?>cardapio/">Cardápio</a>
+                                <li class="<?=($this->titulo == "Pedidos") ? 'active' : ''?>">
+                                    <a href="<?=URL_BASE?>pedidos/">Pedidos</a>
                                 </li>
-                                <li class="<?=($this->titulo == "Notícias") ? 'active' : ''?>">
-                                    <a href="<?=URL_BASE?>noticias/">Notícias</a>
+                                <li class="<?=($this->titulo == "Clientes") ? 'active' : ''?>">
+                                    <a href="<?=URL_BASE?>clientes/">Clientes</a>
+                                </li>
+                                <li class="<?=($this->titulo == "Produtos") ? 'active' : ''?>">
+                                    <a href="<?=URL_BASE?>produtos/">Produtos</a>
+                                </li>
+                                <li class="<?=($this->titulo == "Blog") ? 'active' : ''?>">
+                                    <a href="<?=URL_BASE?>blog/">Blog</a>
                                 </li>
                             </ul>
                         </div>
@@ -55,3 +57,33 @@
                 </div>
             </div>
         </div>
+		<div class="container-fluid p-0">
+		    <div class="col-lg-12 p-0">
+		        <div class="imagem_noticia">
+		            <img src="<?=URL_BASE.'assets/img/blog/'.$blog['imagemBlog']?>" alt="<?=$blog['tituloBlog']?>">
+		        </div>
+		    </div>
+		</div>
+
+		<div class="col-lg-6 mr-auto ml-auto p-5 titulo_noticia">
+			<h1 class="text-white text-center text-uppercase"><?=$blog['tituloBlog']?></h1>
+			<p class="text-center mt-3 mb-0">
+				<i class="la la-calendar"></i> 
+				<span class="data_noticia"><?=date('d/m/Y', strtotime($blog['dataBlog']))?></span>
+			</p>
+		</div>
+
+		<div class="container texto_noticia">
+			<?=$blog['textoBlog']?>
+		</div>
+	</div>
+	<footer class="main-footer fixed-bottom">
+	    <div class="container">
+	        <div class="row">
+	            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 d-flex align-items-center justify-content-xl-center justify-content-lg-center justify-content-md-center justify-content-center text-center">
+	                <p class="text-gradient-02">&copy; Copyright 2019 - <?= date('Y'). " - ".NOME_DO_SITE?>. Todos os direitos reservados.</p>
+	            </div>
+	        </div>
+	    </div>
+	</footer>
+</div>

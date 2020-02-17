@@ -2,17 +2,44 @@
 namespace Controllers;
 use \Core\Admin;
 use \Models\Produto;
+use \Models\Cliente;
 
 class ProdutosController extends Admin{
 	public function index(){
 		$dados = array();
-		$this->titulo = "Produtos";
 
-		$produtos = new Produto();
-		$listaProdutos = $produtos->listaProdutos();
+		switch ($_SESSION['tipo']) {
+			case 0:
+				$this->titulo = "Produtos";
 
-		$dados['listaProdutos'] = $listaProdutos;
-		$this->loadTemplate('admin/produtos', $dados);
+				$produtos = new Produto();
+				$listaProdutos = $produtos->listaProdutos();
+
+				$dados['listaProdutos'] = $listaProdutos;
+				$this->loadTemplate('admin/produtos', $dados);
+			break;
+
+			case 1:
+				$this->titulo = "Cardápio";
+
+				$id = $_SESSION['logado'];
+				
+				$cliente = new Cliente();
+				$infoCLiente = $cliente->info($id);
+
+				$this->nomeCliente = $infoCLiente['nomeCliente']." ".$infoCLiente['sobrenomeCliente'];
+				
+				$produtos = new Produto();
+				$listaProdutos = $produtos->listaProdutos();
+
+				$dados['listaProdutos'] = $listaProdutos;
+				$this->loadTemplate('cliente/produtos', $dados);
+			break;
+
+			default:
+				header("Location: ".URL_BASE."sair/");
+			break;
+		}
 	}
 	public function adicionarProduto(){
 		if (isset($_POST) && !empty($_POST)) {

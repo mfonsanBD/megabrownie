@@ -74,7 +74,7 @@ class PainelController extends Admin{
 				$this->loadTemplate('cliente/painel', $dados);
 			break;
 			default:
-				header("Locatoin: ".URL_BASE."login/");
+				header("Location: ".URL_BASE."login/");
 			break;
 		}
 	}

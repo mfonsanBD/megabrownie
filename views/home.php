@@ -36,12 +36,11 @@
 				<!-- <li><a href="#noticias">Notícias</a></li> -->
 				<li><a href="#contato">Contato</a></li>
 	        </ul>
-	      </nav><!-- #nav-menu-container -->		    		
+	      </nav>		    		
     	</div>
     </div>
-</header><!-- #header -->
+</header>
 
-<!-- start banner Area -->
 <section class="banner-area" id="home">	
 	<div class="container">
 		<div class="row fullscreen d-flex align-items-center justify-content-start">
@@ -51,7 +50,7 @@
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
 						<li>
-							<a href="#contato" class="primary-btn text-uppercase">Entre em contato</a>
+							<a href="<?=URL_BASE.'cardapio/'?>" class="primary-btn text-uppercase">Fazer o meu Pedido</a>
 						</li>
 					</ul>
 				</nav>
@@ -59,9 +58,7 @@
 		</div>
 	</div>
 </section>
-<!-- End banner Area -->	
 
-<!-- Start video-sec Area -->
 <section class="video-sec-area pb-100 pt-40" id="about">
 	<div class="container">
 		<div class="row justify-content-start align-items-center">
@@ -92,78 +89,22 @@
 			</div>
 		</div>						
 		<div class="row">
-			<div class="col-lg-4">
-				<div class="single-menu">
-					<div class="title-div justify-content-between d-flex">
-						<h4>Tradicional</h4>
-						<p class="price float-right">
-							R$ 3,00
+			<?php foreach ($listaProdutos as $lp): ?>
+				<div class="col-lg-4">
+					<div class="single-menu">
+						<div class="title-div justify-content-between d-flex p-0">
+							<h3><?=$lp['nomeProduto']?><br><span style="font-size: 14px;"><?=$lp['sabor']?></span></h3>
+							<p class="price float-right">
+								R$ <?=number_format($lp['precoUnd'], 2, ",", ".")?>
+							</p>
+						</div>
+						<p class="mt-3">
+							<?=$lp['descricaoProduto']?>
 						</p>
+						<a href="#" class="genric-btn primary radius mt-4">Eu quero esse!</a>
 					</div>
-					<p>
-						Descrição dos ingredientes do brownie.
-					</p>
-					<a href="#" class="genric-btn primary radius mt-3">Eu quero esse!</a>
 				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="single-menu">
-					<div class="title-div justify-content-between d-flex">
-						<h4>Brigadeiro/MM's</h4>
-						<p class="price float-right">
-							R$ 3,00
-						</p>
-					</div>
-					<p>
-						Descrição dos ingredientes do brownie.
-					</p>
-					<a href="#" class="genric-btn primary radius mt-3">Eu quero esse!</a>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="single-menu">
-					<div class="title-div justify-content-between d-flex">
-						<h4>Paçoca</h4>
-						<p class="price float-right">
-							R$ 3,00
-						</p>
-					</div>
-					<p>
-						Descrição dos ingredientes do brownie.
-					</p>
-					<a href="#" class="genric-btn primary radius mt-3">Eu quero esse!</a>
-				</div>
-			</div>														
-		</div>
-		<div class="row justify-content-center">	
-			<div class="col-lg-4">
-				<div class="single-menu">
-					<div class="title-div justify-content-between d-flex">
-						<h4>Nutella</h4>
-						<p class="price float-right">
-							R$ 3,00
-						</p>
-					</div>
-					<p>
-						Descrição dos ingredientes do brownie.
-					</p>
-					<a href="#" class="genric-btn primary radius mt-3">Eu quero esse!</a>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="single-menu">
-					<div class="title-div justify-content-between d-flex">
-						<h4>Doce de Leite</h4>
-						<p class="price float-right">
-							R$ 3,00
-						</p>
-					</div>
-					<p>
-						Descrição dos ingredientes do brownie.
-					</p>
-					<a href="#" class="genric-btn primary radius mt-3">Eu quero esse!</a>
-				</div>
-			</div>
+			<?php endforeach ?>
 		</div>
 	</div>	
 </section>
@@ -212,9 +153,7 @@
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.
 					</p>
 					<p class="footer-text">
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						Copyright &copy; <?=date('Y')." - ".NOME_DO_SITE?>. Todos os direitos reservados.
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						Copyright &copy; 2019 - <?=date('Y')." - ".NOME_DO_SITE?>. Todos os direitos reservados.
 					</p>								
 				</div>
 			</div>

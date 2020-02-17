@@ -14,6 +14,17 @@ class Blog extends Model{
 
 		return $array;
 	}
+	public function listaNoticia($slug){
+		$array = array();
+		$sql = $this->conexao->prepare("SELECT * FROM blog WHERE slug = ?");
+		$sql->execute(array($slug));
+
+		if ($sql->rowCount() > 0) {
+			$array = $sql->fetch();
+		}
+
+		return $array;
+	}
 	public function excluirNoticia($id){
 		$sql = $this->conexao->prepare("DELETE FROM blog WHERE idBlog = ?");
 		$sql->execute(array($id));
@@ -24,9 +35,9 @@ class Blog extends Model{
 			return false;
 		}
 	}
-	public function adicionarPostagem($titulo, $texto, $nomeimagem){
-		$sql = $this->conexao->prepare("INSERT INTO blog SET tituloBlog = ?, textoBlog = ?, dataBlog = NOW(), imagemBlog = ?");
-		$sql->execute(array($titulo, $texto, $nomeimagem));
+	public function adicionarPostagem($titulo, $texto, $nomeimagem, $slug){
+		$sql = $this->conexao->prepare("INSERT INTO blog SET tituloBlog = ?, textoBlog = ?, dataBlog = NOW(), imagemBlog = ?, slug = ?");
+		$sql->execute(array($titulo, $texto, $nomeimagem, $slug));
 
 		if ($sql->rowCount() > 0) {
 			return true;
@@ -34,9 +45,9 @@ class Blog extends Model{
 			return false;
 		}
 	}
-	public function editaPostagem($titulo, $texto, $nomeimagem, $id){
-		$sql = $this->conexao->prepare("UPDATE blog SET tituloBlog = ?, textoBlog = ?, imagemBlog = ? WHERE idBlog = ?");
-		$sql->execute(array($titulo, $texto, $nomeimagem, $id));
+	public function editaPostagem($titulo, $texto, $nomeimagem, $slug, $id){
+		$sql = $this->conexao->prepare("UPDATE blog SET tituloBlog = ?, textoBlog = ?, imagemBlog = ?, slug = ? WHERE idBlog = ?");
+		$sql->execute(array($titulo, $texto, $nomeimagem, $slug, $id));
 
 		if ($sql->rowCount() > 0) {
 			return true;
@@ -54,5 +65,16 @@ class Blog extends Model{
 		}
 
 		return $array;
+	}
+	public function verificaSlug($slug){
+		$array = array();
+		$sql = $this->conexao->prepare("SELECT COUNT(*) AS quantidadeDeSlug FROM blog WHERE slug LIKE '".$slug."%'");
+		$sql->execute(array($slug));
+
+		if ($sql->rowCount() > 0) {
+			$array = $sql->fetch();
+		}
+
+		return $array['quantidadeDeSlug'];
 	}
 }

@@ -1,4 +1,21 @@
 urlSite = window.location.href;
+function string_to_slug (nome) {
+    nome = nome.replace('/^\s+|\s+$/g', ''); // trim
+    nome = nome.toLowerCase();
+  
+    // remove accents, swap ñ for n, etc
+    var from = "ãàáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+    var to   = "aaaaaeeeeiiiioooouuuunc------";
+    for (var i=0, l=from.length ; i<l ; i++) {
+        nome = nome.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+    }
+
+    nome = nome.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+        .replace(/\s+/g, '-') // collapse whitespace and replace by -
+        .replace(/-+/g, '-'); // collapse dashes
+
+    return nome;
+}
 $('#modalExNoticia').on('show.bs.modal', function(event){
 	var button = $(event.relatedTarget);
 	var id = button.data('id');
@@ -26,46 +43,60 @@ $('#modalExNoticia').on('show.bs.modal', function(event){
 $("#addPost").click(function(){
 		var titulo 		= $("#titulo").val();
 		var texto 		= CKEDITOR.instances.texto_blog.getData();
-		
-		var data 		= new FormData();
-		var imagem 		= $("#imagem_destaque")[0].files;
+		var slug 		= string_to_slug(titulo);
 
-		if(titulo == ''){
-			alertaAviso("O campo TITULO DA POSTAGEM é obrigatório.");
-		}
-		else if(texto == ''){
-			alertaAviso("O campo TEXTO é obrigatório.");
-		}
-		else{
-			if (imagem.length > 0) {
-				data.append('titulo', titulo);
-				data.append('texto', texto);
-				data.append('imagem', imagem[0]);
+		$.ajax({
+			url: urlSite+'verificaSlug/',
+			type: 'POST',
+			data: {slug: slug},
+			success: function(resposta){
+				
+				if (resposta != 0) {
+					slug += "-"+resposta;
+				}
 
-				$.ajax({
-					url: urlSite+'adicionarPostagem/',
-					type: "POST",
-					data: data,
-					contentType: false,
-					processData: false,
-					success: function(dados){
-						if (dados == 1) {
-							alertaSucesso("Postagem adicionada com sucesso.");
-						}
-						else if (dados == 2) {
-							alertaAviso("Tipo de imagem de destaque inválida.");
-						}
-						else if (dados == 3) {
-							alertaAviso("O tamanho da imagem de destaque excede o permitido.");
-						}else{
-							alertaErro("Não foi possível cadastrar a postagem. Tente novamente mais tarde.");
-						}
+				var data 		= new FormData();
+				var imagem 		= $("#imagem_destaque")[0].files;
+
+				if(titulo == ''){
+					alertaAviso("O campo TITULO DA POSTAGEM é obrigatório.");
+				}
+				else if(texto == ''){
+					alertaAviso("O campo TEXTO é obrigatório.");
+				}
+				else{
+					if (imagem.length > 0) {
+						data.append('titulo', titulo);
+						data.append('texto', texto);
+						data.append('imagem', imagem[0]);
+						data.append('slug', slug);
+
+						$.ajax({
+							url: urlSite+'adicionarPostagem/',
+							type: "POST",
+							data: data,
+							contentType: false,
+							processData: false,
+							success: function(dados){
+								if (dados == 1) {
+									alertaSucesso("Postagem adicionada com sucesso.");
+								}
+								else if (dados == 2) {
+									alertaAviso("Tipo de imagem de destaque inválida.");
+								}
+								else if (dados == 3) {
+									alertaAviso("O tamanho da imagem de destaque excede o permitido.");
+								}else{
+									alertaErro("Não foi possível cadastrar a postagem. Tente novamente mais tarde.");
+								}
+							}
+						});
+					}else{
+						alertaAviso("O campo IMAGEM DE DESTAQUE é obrigatório.");
 					}
-				});
-			}else{
-				alertaAviso("O campo IMAGEM DE DESTAQUE é obrigatório.");
+				}
 			}
-		}
+		});
 });
 $("#modalEdNoticia").on('show.bs.modal', function(event){
 	var button = $(event.relatedTarget);
@@ -86,9 +117,10 @@ $("#modalEdNoticia").on('show.bs.modal', function(event){
 			CKEDITOR.instances.edita_texto_blog.setData(dados.texto);
 			$("#preview").attr('src', dados.url_principal+'assets/img/blog/'+dados.imagem);
 
-			var titulo_antigo = dados.titulo;
-			var texto_antigo = dados.texto;
-			var imagem_antiga = dados.imagem;
+			var titulo_antigo 	= dados.titulo;
+			var texto_antigo 	= dados.texto;
+			var imagem_antiga 	= dados.imagem;
+			var slug_antigo 	= dados.slug;
 
 			$("#editaPost").click(function(e){
 				e.preventDefault();
@@ -105,6 +137,11 @@ $("#modalEdNoticia").on('show.bs.modal', function(event){
 				}else{ 
 					novos_dados.append('imagem_antiga', imagem_antiga);
 				}
+
+				var novo_slug = string_to_slug(novo_titulo);
+				
+				novos_dados.append('novo_slug', novo_slug);
+				novos_dados.append('slug_antigo', slug_antigo);
 
 				novos_dados.append('id', id);
 				novos_dados.append('titulo_antigo', titulo_antigo);

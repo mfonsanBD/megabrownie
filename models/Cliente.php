@@ -49,7 +49,7 @@ class Cliente extends Model{
 	}
 	public function qtdClientes(){
 		$array = array();
-		$sql = $this->conexao->prepare("SELECT COUNT(*) AS c FROM cliente");
+		$sql = $this->conexao->prepare("SELECT COUNT(*) AS c FROM cliente WHERE tipoCliente = 1");
 		$sql->execute();
 
 		if ($sql->rowCount() > 0) {

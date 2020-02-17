@@ -40,8 +40,12 @@
                                         }
                                     ?>
                                         <tr>
-                                            <td><img src="<?=$foto?>" width="80" alt="<?=$ln['tituloBlog']?>"></td>
-                                            <td><span class="text-primary"><?=$ln['tituloBlog']?></span></td>
+                                            <td>
+                                                <div class="fotoNoticiaAdmin">
+                                                    <img src="<?=$foto?>" alt="<?=$ln['tituloBlog']?>">
+                                                </div>
+                                            </td>
+                                            <td><a href="<?=URL_BASE.$ln['slug'].'/'?>"><span class="text-primary"><?=$ln['tituloBlog']?></span></a></td>
                                             <td><?=date('d/m/Y H:i:s', strtotime($ln['dataBlog']))?></td>
                                             <td class="td-actions">
 

@@ -1,6 +1,7 @@
 <?php
 namespace Controllers;
 use \Core\App;
+use \Models\Blog;
 use \Models\Cliente;
 
 class LoginController extends App{
@@ -54,5 +55,48 @@ class LoginController extends App{
 	}
 	public function principal(){
 		echo URL_BASE;
+	}
+	public function noticia($slug){
+		$dados = array();
+
+		switch ($_SESSION['tipo']) {
+			case 0:
+				$id = $_SESSION['logado'];
+				
+				$cliente = new Cliente();
+				$infoCLiente = $cliente->info($id);
+
+				$this->nomeCliente = $infoCLiente['nomeCliente']." ".$infoCLiente['sobrenomeCliente'];
+				
+				$noticias = new Blog();
+				$blog = $noticias->listaNoticia($slug);
+
+				$this->titulo = $blog['tituloBlog'];
+				
+				$dados['blog'] = $blog;
+				$this->loadTemplate('blog', $dados);
+			break;
+
+			case 1:
+				$id = $_SESSION['logado'];
+				
+				$cliente = new Cliente();
+				$infoCLiente = $cliente->info($id);
+
+				$this->nomeCliente = $infoCLiente['nomeCliente']." ".$infoCLiente['sobrenomeCliente'];
+
+				$noticias = new Blog();
+				$noticia = $noticias->listaNoticia($slug);
+
+				$this->titulo = $noticia['tituloBlog'];
+				
+				$dados['noticia'] = $noticia;
+				$this->loadTemplate('noticia', $dados);
+			break;
+
+			default:
+				header("Location: ".URL_BASE."sair/");
+			break;
+		}
 	}
 }
