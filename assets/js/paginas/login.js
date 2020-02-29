@@ -4,6 +4,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		var emailLogin = $('#emailLogin').val();
 		var senhaLogin = $('#senhaLogin').val();
+		var csrf_token = $('#csrf_token').val();
 		
 		if (emailLogin == "" && senhaLogin == "") {
 			alertaAviso("Todos os campos são obrigatório.");
@@ -30,14 +31,18 @@ $(document).ready(function(){
 									$.ajax({
 										url: urlSite+'logar/',
 										type: "POST",
-										data: {email:emailLogin, senha:senhaLogin},
+										data: {email:emailLogin, senha:senhaLogin, token:csrf_token},
 										beforeSend: function() {
 									        $("#carregando").show();
 									    },
 										success: function(dados){
 											if (dados == 1) {
 												alertaSucessoLogin("Login realizado com sucesso.");
-											}else{
+											}
+											else if(dados == 2){
+												alertaAviso("Você não pode enviar dados de outro local para acesso a esta plataforma.");
+											}
+											else{
 												alertaErro("Não foi possível fazer login. Tente novamente em alguns minutos.");
 											}
 										}

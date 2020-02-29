@@ -36,6 +36,7 @@
 							    <span class="bar"></span>
 							    <label>Senha</label>
                             </div>
+                            <input type="hidden" id="csrf_token" value="<?=$csrf_token?>">
                             <button type="submit" class="btn btn-lg btn-gradient-01">Acessar</button>
                         </form>
                     </div>

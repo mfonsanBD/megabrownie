@@ -7,6 +7,13 @@ use \Models\Cliente;
 class LoginController extends App{
 	public function index(){
 		$dados = array();
+
+		if (!isset($_SESSION['csrf_token'])) {
+			$_SESSION['csrf_token'] = md5(time().rand(0, 99999));
+		}
+
+		$dados['csrf_token'] = $_SESSION['csrf_token'];
+
 		$this->titulo = "Login";
 		$this->loadTemplate('login', $dados);
 	}
@@ -40,11 +47,16 @@ class LoginController extends App{
 		if (isset($_POST) && !empty($_POST)) {
 			$email = addslashes(trim($_POST['email']));
 			$senha = addslashes(trim(md5($_POST['senha'])));
+			$token = addslashes(trim($_POST['token']));
 
-			if ($cliente->logar($email, $senha)) {
-				echo 1;
+			if ($token == $_SESSION['csrf_token']) {
+				if ($cliente->logar($email, $senha)) {
+					echo 1;
+				}else{
+					echo 0;
+				}
 			}else{
-				echo 0;
+				echo 2;
 			}
 		}
 	}

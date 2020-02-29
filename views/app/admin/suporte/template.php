@@ -1,6 +1,6 @@
 <?php
     if (empty($_SESSION['logado'])) {
-        header("Location: ".URL_BASE."login/");
+        header("Location: ".URL_BASE."sair/");
         exit();
     }
 ?>
@@ -56,12 +56,13 @@
                 "language": {
                     "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
                 },
-                "order": [[ 2, "desc" ]]
+                "order": [[ 0, "desc" ]]
             });
             $('#pagina_produtos').dataTable({
                 "language": {
                     "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
-                }
+                },
+                "order": [[ 1, "desc" ]]
             });
             $('#tabela_mais_pedidos').dataTable({
                 "language": {

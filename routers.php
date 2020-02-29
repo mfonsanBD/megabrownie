@@ -2,7 +2,7 @@
 global $routers;
 $routers = array();
 
-$routers['/sair/'] 	= '/login/sair/';
+$routers['/sair/'] 		= '/login/sair/';
 $routers['/noticias/'] 	= '/blog/index/';
 $routers['/cardapio/'] 	= '/produtos/index/';
 
