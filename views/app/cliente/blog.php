@@ -24,8 +24,10 @@
                             <div class="fotoNoticiaCliente">
                                 <img src="<?=$foto?>" alt="<?=$ln['tituloBlog']?>">
                             </div>
-                            <a href="<?=URL_BASE.$ln['slug'].'/'?>"><h2 class="text-dark text-uppercase mt-3" style="font-weight: 600 !important"><?=$ln['tituloBlog']?></h2></a><br>
-                            <span class="mb-4"><?=date('d/m/Y', strtotime($ln['dataBlog']))?></span>
+                            <a href="<?=URL_BASE.$ln['slug'].'/'?>">
+                                <h2 class="text-dark text-uppercase mt-3" style="font-weight: 600 !important"><?=$ln['tituloBlog']?></h2>
+                            </a><br>
+                            <span class="mb-4"><?=date('d/m/Y', strtotime($ln['dataBlog']))?></span><br>
                             <?=mb_strimwidth($ln['textoBlog'], 0, 200, "...")?>
                             <p><a href="<?=URL_BASE.$ln['slug'].'/'?>" class="btn btn-primary rounded text-white btn-block mt-4 mr-1 mb-5">Leia Mais</a></p>
                         </div>

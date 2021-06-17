@@ -47,6 +47,7 @@
     <script src="<?=URL_BASE?>assets/js/paginas/produtos.js"></script>
     <script src="<?=URL_BASE?>assets/js/paginas/blog.js"></script>
     <script src="<?=URL_BASE?>assets/js/paginas/painel-cliente.js"></script>
+    <script src="<?=URL_BASE?>assets/js/paginas/endereco.js"></script>
     <script src="<?=URL_BASE?>assets/js/ckeditor/ckeditor.js"></script>
 
     <script src="<?=URL_BASE?>app/assets/vendors/js/datatables/datatables.min.js"></script>

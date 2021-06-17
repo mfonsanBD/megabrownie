@@ -9,7 +9,7 @@ if (AMBIENTE == 'desenvolvimento') {
 	$config['banco'] 		= 'megabrownie';
 	$config['host'] 		= 'localhost';
 	$config['usuario'] 		= 'root';
-	$config['senha'] 		= 'root';
+	$config['senha'] 		= '';
 }else{
 	
 }

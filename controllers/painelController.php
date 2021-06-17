@@ -95,4 +95,23 @@ class PainelController extends Admin{
 			}
 		}
 	}
+	public function cadastraEndereco(){
+		if (isset($_POST) && !empty($_POST)) {
+			$clienteId 					= $_SESSION['logado'];
+			$logradouro 				= addslashes(trim($_POST['logradouro']));
+			$numero 						= addslashes(trim($_POST['numero']));
+			$complemento 				= addslashes(trim($_POST['complemento']));
+			$pontoDeReferencia 	= addslashes(trim($_POST['pontoDeReferencia']));
+			$bairro 						= addslashes(trim($_POST['bairro']));
+			$cidade 						= addslashes(trim($_POST['cidade']));
+
+			$endereco 					= new Endereco();
+
+			if ($endereco->addEndereco($clienteId, $logradouro, $numero, $complemento, $pontoDeReferencia, $bairro, $cidade)) {
+				echo 1;
+			}else{
+				echo 0;
+			}
+		}
+	}
 }

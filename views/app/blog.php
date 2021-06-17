@@ -60,7 +60,15 @@
 		<div class="container-fluid p-0">
 		    <div class="col-lg-12 p-0">
 		        <div class="imagem_noticia">
-		            <img src="<?=URL_BASE.'assets/img/blog/'.$blog['imagemBlog']?>" alt="<?=$blog['tituloBlog']?>">
+                    <?php
+                        $blogImg;
+                        if($blog['imagemBlog'] == 'padrao.jpg'){
+                            $blogImg = URL_BASE.'assets/img/padrao.jpg';
+                        }else{
+                            $blogImg = URL_BASE.'assets/img/blog/'.$blog['imagemBlog'];
+                        }
+                    ?>
+		            <img src="<?=$blogImg?>" alt="<?=$blog['tituloBlog']?>">
 		        </div>
 		    </div>
 		</div>

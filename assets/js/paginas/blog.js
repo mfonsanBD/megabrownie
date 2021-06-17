@@ -112,42 +112,27 @@ $("#modalEdNoticia").on('show.bs.modal', function(event){
 		dataType: 'json',
 		data: {id:id},
 		success: function(dados){
-
 			$("#edita_titulo").attr('value', dados.titulo);
 			CKEDITOR.instances.edita_texto_blog.setData(dados.texto);
 			$("#preview").attr('src', dados.url_principal+'assets/img/blog/'+dados.imagem);
 
-			var titulo_antigo 	= dados.titulo;
-			var texto_antigo 	= dados.texto;
-			var imagem_antiga 	= dados.imagem;
-			var slug_antigo 	= dados.slug;
-
 			$("#editaPost").click(function(e){
 				e.preventDefault();
-
-				var novo_titulo 	= $("#edita_titulo").val();
-				var novo_texto 		= CKEDITOR.instances.edita_texto_blog.getData();
-
 				var novos_dados 	= new FormData();
 				var nova_imagem 	= $("#edita_imagem_destaque")[0].files;
 
-				if (nova_imagem.length > 0) {
-					novos_dados.append('nova_imagem', nova_imagem[0]);
-					novos_dados.append('imagem_antiga', "");
-				}else{ 
-					novos_dados.append('imagem_antiga', imagem_antiga);
-				}
+				var titulo 	= $("#edita_titulo").val();
+				var texto 	= CKEDITOR.instances.edita_texto_blog.getData();
 
-				var novo_slug = string_to_slug(novo_titulo);
-				
-				novos_dados.append('novo_slug', novo_slug);
-				novos_dados.append('slug_antigo', slug_antigo);
+				var novo_slug = string_to_slug(titulo);
 
 				novos_dados.append('id', id);
-				novos_dados.append('titulo_antigo', titulo_antigo);
-				novos_dados.append('texto_antigo', texto_antigo);
-				novos_dados.append('novo_titulo', novo_titulo);
-				novos_dados.append('novo_texto', novo_texto);
+				novos_dados.append('slug', novo_slug);
+				novos_dados.append('titulo', titulo);
+				novos_dados.append('texto', texto);
+				novos_dados.append('imagem', nova_imagem[0]);
+
+				console.log(novos_dados);
 
 				$.ajax({
 					url: urlSite+'editaPostagem/',
@@ -156,21 +141,22 @@ $("#modalEdNoticia").on('show.bs.modal', function(event){
 					contentType: false,
 					processData: false,
 					success: function(dados){
-						if (dados == 1) {
-							alertaSucesso("Postagem editada com sucesso.");
-						}
-						else if (dados == 2) {
-							alertaAviso("Tipo de imagem de destaque inválida.");
-						}
-						else if (dados == 3) {
-							alertaAviso("O tamanho da imagem de destaque excede o permitido.");
-						}
-						else if(dados == 4){
-							alertaAviso("Os dados são os atuais.");
-						}
-						else{
-							alertaErro("Não foi possível editar a postagem. Tente novamente mais tarde.");
-						}
+						alertaSucesso(dados);
+						// if (dados == 1) {
+						// 	alertaSucesso("Postagem editada com sucesso.");
+						// }
+						// else if (dados == 2) {
+						// 	alertaAviso("Tipo de imagem de destaque inválida.");
+						// }
+						// else if (dados == 3) {
+						// 	alertaAviso("O tamanho da imagem de destaque excede o permitido.");
+						// }
+						// else if(dados == 4){
+						// 	alertaAviso("Os dados são os atuais.");
+						// }
+						// else{
+						// 	alertaErro("Não foi possível editar a postagem. Tente novamente mais tarde.");
+						// }
 					}
 				});
 			});

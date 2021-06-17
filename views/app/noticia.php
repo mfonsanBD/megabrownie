@@ -43,9 +43,6 @@
                                 <li class="<?=($this->titulo == "Painel de Controle") ? 'active' : ''?>">
                                     <a href="<?=URL_BASE?>painel/">Painel de Controle</a>
                                 </li>
-                                <li class="<?=($this->titulo == "Cardápio") ? 'active' : ''?>">
-                                    <a href="<?=URL_BASE?>cardapio/">Cardápio</a>
-                                </li>
                                 <li class="<?=($this->titulo == "Notícias") ? 'active' : ''?>">
                                     <a href="<?=URL_BASE?>noticias/">Notícias</a>
                                 </li>
@@ -58,7 +55,15 @@
 		<div class="container-fluid p-0">
 		    <div class="col-lg-12 p-0">
 		        <div class="imagem_noticia">
-		            <img src="<?=URL_BASE.'assets/img/blog/'.$noticia['imagemBlog']?>" alt="<?=$noticia['tituloBlog']?>">
+                    <?php
+                        $blogImg;
+                        if($noticia['imagemBlog'] == 'padrao.jpg'){
+                            $blogImg = URL_BASE.'assets/img/padrao.jpg';
+                        }else{
+                            $blogImg = URL_BASE.'assets/img/blog/'.$noticia['imagemBlog'];
+                        }
+                    ?>
+		            <img src="<?=$blogImg?>" alt="<?=$noticia['tituloBlog']?>">
 		        </div>
 		    </div>
 		</div>

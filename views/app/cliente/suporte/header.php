@@ -43,9 +43,6 @@
                                 <li class="<?=($this->titulo == "Painel de Controle") ? 'active' : ''?>">
                                     <a href="<?=URL_BASE?>painel/">Painel de Controle</a>
                                 </li>
-                                <li class="<?=($this->titulo == "Cardápio") ? 'active' : ''?>">
-                                    <a href="<?=URL_BASE?>cardapio/">Cardápio</a>
-                                </li>
                                 <li class="<?=($this->titulo == "Notícias") ? 'active' : ''?>">
                                     <a href="<?=URL_BASE?>noticias/">Notícias</a>
                                 </li>

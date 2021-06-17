@@ -16,8 +16,7 @@ $('#fazerPedido').on('show.bs.modal', function(event){
 	$("#valorUnit").html("R$ "+formatado);
 
 	$("#meuTotal").click(function(){
-		var quantidade 			= $("#quantidade").val();
-		var endereco 			= $('select[name="endereco"]').val();
+		var quantidade 		= $("#quantidade").val();
 		var total 				= quantidade*precouni;
 
 		$("#vTotal").removeClass("d-none");
@@ -27,23 +26,30 @@ $('#fazerPedido').on('show.bs.modal', function(event){
 
 	$("#formPedido").click(function(event){
 		event.preventDefault();
-		var quantidade 			= $("#quantidade").val();
+		var quantidade 		= $("#quantidade").val();
 		var endereco 			= $('select[name="endereco"]').val();
 		var total 				= quantidade*precouni;
 
-		$.ajax({
-			url: urlSite+"meuPedido/",
-			type: "POST",
-			data:{endereco:endereco, produtoId:id, quantidade:quantidade, total:total},
-			success: function(dados){
-				console.log(dados);
-				if(dados == 1){
-					alertaSucesso("Pedido realizado com sucesso.");
-				}else{
-					alertaErro("Não foi possível realizar o pedido. Tente novamente mais tarde.");
+		if(endereco == null){
+			alertaAviso("O campo ENDEREÇO PARA ENTREGA é obrigatório.");
+		}
+		else if(quantidade == ''){
+			alertaAviso("O campo QUANTIDADE é obrigatório.");
+		}else{
+			$.ajax({
+				url: urlSite+"meuPedido/",
+				type: "POST",
+				data:{endereco:endereco, produtoId:id, quantidade:quantidade, total:total},
+				success: function(dados){
+					console.log(dados);
+					if(dados == 1){
+						alertaSucesso("Pedido realizado com sucesso.");
+					}else{
+						alertaErro("Não foi possível realizar o pedido. Tente novamente mais tarde.");
+					}
 				}
-			}
-		});
+			});
+		}
 	});
 });
 function alertaSucesso(texto){

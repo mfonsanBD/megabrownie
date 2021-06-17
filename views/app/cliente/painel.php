@@ -51,30 +51,6 @@
                 </div>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                <div class="widget widget-16 has-shadow border-top border-secondary">
-                    <div class="widget-body">
-                        <div class="row">
-                            <div class="col-xl-12 d-flex flex-column justify-content-center align-items-center">
-                                <div class="counter"><?=$qtdPedidos;?></div>
-                                <div class="total-views text-capitalize text-center">
-                                    <?php
-                                        switch ($qtdPedidos) {
-                                            case 1:
-                                                echo "Pedido Feito";
-                                            break;
-                                            
-                                            default:
-                                                echo "Pedidos feitos";
-                                            break;
-                                        }
-                                    ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                 <div class="widget widget-16 has-shadow border-top border-warning">
                     <div class="widget-body">
                         <div class="row">
@@ -89,6 +65,30 @@
                                             
                                             default:
                                                 echo "Pedidos em preparo";
+                                            break;
+                                        }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                <div class="widget widget-16 has-shadow border-top border-secondary">
+                    <div class="widget-body">
+                        <div class="row">
+                            <div class="col-xl-12 d-flex flex-column justify-content-center align-items-center">
+                                <div class="counter"><?=$qtdPedidos;?></div>
+                                <div class="total-views text-capitalize text-center">
+                                    <?php
+                                        switch ($qtdPedidos) {
+                                            case 1:
+                                                echo "Quantidade de Pedido";
+                                            break;
+                                            
+                                            default:
+                                                echo "Quantidade de Pedidos";
                                             break;
                                         }
                                     ?>
@@ -237,7 +237,16 @@
                             <div class="col-lg-4">
                                 <div style="background-color: #f9f9f9" class="single-menu p-4 rounded shadow-sm">
                                     <div class="produto mb-4">
-                                        <img src="<?=URL_BASE?>assets/img/produto/<?=$lpr['idProduto'];?>/<?=$lpr['fotoProduto'];?>" alt="<?=$lpr['nomeProduto'];?>">
+                                        <?php
+                                            $linkImagem;
+                                            
+                                            if($lpr['fotoProduto'] == 'padrao.jpg'){
+                                                $linkImagem = URL_BASE.'assets/img/'.$lpr['fotoProduto'];
+                                            }else{
+                                                $linkImagem = URL_BASE.'assets/img/produto/'.$lpr['idProduto'].'/'.$lpr['fotoProduto'];
+                                            }
+                                        ?>
+                                        <img src="<?=$linkImagem?>" alt="<?=$lpr['nomeProduto'];?>">
                                     </div>
                                     <div class="title-div justify-content-between d-flex">
                                         <h4><?=$lpr['nomeProduto'];?></h4>
@@ -274,14 +283,14 @@
             <div class="form-group row d-flex align-items-center mb-3">
                 <label class="col-lg-4 form-control-label d-flex justify-content-lg-end">Logradouro *</label>
                 <div class="col-lg-5">
-                    <input type="text" class="form-control" id="nome" placeholder="Digite o nome da sua rua, avenida, etc...">
+                    <input type="text" class="form-control" id="logradouro" placeholder="Digite o nome da sua rua, avenida, etc...">
                 </div>
             </div>
             <div class="form-group row d-flex align-items-center mb-3">
                 <label class="col-lg-4 form-control-label d-flex justify-content-lg-end">Número *</label>
                 <div class="col-lg-5">
                     <div class="input-group">
-                        <input type="number" class="form-control" id="sobrenome" placeholder="O número da sua casa para entrega.">
+                        <input type="number" class="form-control" id="numero" placeholder="O número da sua casa para entrega.">
                     </div>
                 </div>
             </div>
@@ -289,7 +298,7 @@
                 <label class="col-lg-4 form-control-label d-flex justify-content-lg-end">Complemento *</label>
                 <div class="col-lg-5">
                     <div class="input-group">
-                        <input type="text" class="form-control telefone" id="telefone" placeholder="Complemento do endereço.">
+                        <input type="text" class="form-control" id="complemento" placeholder="Complemento do endereço.">
                     </div>
                 </div>
             </div>
@@ -297,7 +306,7 @@
                 <label class="col-lg-4 form-control-label d-flex justify-content-lg-end">Ponto de Referência *</label>
                 <div class="col-lg-5">
                     <div class="input-group">
-                        <input type="text" class="form-control telefone" id="whatsapp" placeholder="Qual o ponto de referência da sua casa?">
+                        <input type="text" class="form-control" id="pontoDeReferencia" placeholder="Qual o ponto de referência da sua casa?">
                     </div>
                 </div>
             </div>
@@ -305,19 +314,19 @@
                 <label class="col-lg-4 form-control-label d-flex justify-content-lg-end">Bairro *</label>
                 <div class="col-lg-5">
                     <div class="input-group">
-                        <input type="email" class="form-control" id="email" placeholder="Qual o seu bairro?">
+                        <input type="text" class="form-control" id="bairro" placeholder="Qual o seu bairro?">
                     </div>
                 </div>
             </div>
             <div class="form-group row d-flex align-items-center mb-3">
                 <label class="col-lg-4 form-control-label d-flex justify-content-lg-end">Cidade *</label>
                 <div class="col-lg-5">
-                    <input type="password" class="form-control" id="senha" placeholder="Qual a sua cidade?">
+                    <input type="text" class="form-control" id="cidade" placeholder="Qual a sua cidade?">
                 </div>
             </div>
             <div class="em-separator separator-dashed"></div>
             <div class="text-center">
-                <button class="btn btn-gradient-01" type="submit">Cadastrar Endereço</button>
+                <button class="btn btn-gradient-01" type="submit" id="formCadastroEndereco">Cadastrar Endereço</button>
             </div>
         </form>
       </div>

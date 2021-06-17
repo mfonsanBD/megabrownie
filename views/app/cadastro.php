@@ -38,7 +38,7 @@
                                 <label class="col-lg-4 form-control-label d-flex justify-content-lg-end">Sobrenome *</label>
                                 <div class="col-lg-5">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="sobrenome" placeholder="Digite seu e-mail">
+                                        <input type="text" class="form-control" id="sobrenome" placeholder="Digite seu sobrenome">
                                     </div>
                                 </div>
                             </div>

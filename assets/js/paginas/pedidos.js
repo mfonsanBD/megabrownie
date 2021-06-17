@@ -4,6 +4,7 @@ $('#modalEdPe').on('show.bs.modal', function(event){
 	idPedido = button.data('id');
 	var modal = $(this);
 });
+
 $("#mudaStatus").click(function(event){
 	event.preventDefault();
 	var status = $('select[name="status"]').val();
@@ -20,6 +21,7 @@ $("#mudaStatus").click(function(event){
 		}
 	});
 });
+
 function alertaSucesso(texto){
 	return swal({
 		title: "Parabéns!", 

@@ -84,7 +84,6 @@ class ProdutosController extends Admin{
 
 			if (in_array($arquivo['type'], $permitidos)) {
 				if ($arquivo['size'] <= 2*1048576) {
-					echo "Tamanho do arquivo no padrão";
 					if (is_dir($caminho)) {
 						move_uploaded_file($arquivo['tmp_name'], "assets/img/produto/".$id."/".$nomeArquivo);
 					}else{

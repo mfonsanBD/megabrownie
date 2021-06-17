@@ -12,7 +12,7 @@
 	  						Seg-Sex: 9:00 às 17:00
 	  					</li>
 	  					<li>
-	  						<a href="tel:(21) 98456-7458">(21) 98456-7458</a>
+	  						<a href="tel:(21) 98456-7458">(21) 90000-0000</a>
 	  					</li>				  					
 	  				</ul>
 	  			</div>
@@ -30,11 +30,9 @@
 	      </div>
 	      <nav id="nav-menu-container">
 	        <ul class="nav-menu">
-				<li class="menu-active"><a href="#home">Início</a></li>
-				<li><a href="#about">Sobre Nós</a></li>
-				<li><a href="#menu">Menu</a></li>
-				<!-- <li><a href="#noticias">Notícias</a></li> -->
-				<li><a href="#contato">Contato</a></li>
+						<li class="menu-active"><a href="#home">Início</a></li>
+						<li><a href="#about">Sobre Nós</a></li>
+						<li><a href="#contato">Contato</a></li>
 	        </ul>
 	      </nav>		    		
     	</div>
@@ -76,38 +74,6 @@
 	</div>	
 </section>
 <!-- End video-sec Area -->
-
-<!-- Start menu Area -->
-<section class="menu-area section-gap" id="menu">
-	<div class="container">
-		<div class="row d-flex justify-content-center">
-			<div class="menu-content pb-60 col-lg-10">
-				<div class="title text-center">
-					<h1 class="mb-10">Brownie</h1>
-					<p>Escolha seu sabor favorito e faça seu pedido.</p>
-				</div>
-			</div>
-		</div>						
-		<div class="row">
-			<?php foreach ($listaProdutos as $lp): ?>
-				<div class="col-lg-4">
-					<div class="single-menu">
-						<div class="title-div justify-content-between d-flex p-0">
-							<h3><?=$lp['nomeProduto']?><br><span style="font-size: 14px;"><?=$lp['sabor']?></span></h3>
-							<p class="price float-right">
-								R$ <?=number_format($lp['precoUnd'], 2, ",", ".")?>
-							</p>
-						</div>
-						<p class="mt-3">
-							<?=$lp['descricaoProduto']?>
-						</p>
-						<a href="#" class="genric-btn primary radius mt-4">Eu quero esse!</a>
-					</div>
-				</div>
-			<?php endforeach ?>
-		</div>
-	</div>	
-</section>
 
 <section class="contato-area section-gap" id="contato">
 	<div class="container">

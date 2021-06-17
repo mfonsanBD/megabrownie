@@ -14,4 +14,15 @@ class Endereco extends Model{
 
 		return $array;
 	}
+
+	public function addEndereco($clienteId, $logradouro, $numero, $complemento, $pontoDeReferencia, $bairro, $cidade){
+		$sql = $this->conexao->prepare("INSERT INTO endereco SET clienteId = ?, logradouro = ?, numero = ?, complemento = ?, referencia = ?, bairro = ?, cidade = ?");
+		$sql->execute(array($clienteId, $logradouro, $numero, $complemento, $pontoDeReferencia, $bairro, $cidade));
+
+		if ($sql->rowCount() > 0) {
+			return true;
+		}else{
+			return false;
+		}
+	}
 }
