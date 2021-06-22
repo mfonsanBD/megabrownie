@@ -11,7 +11,11 @@ if (AMBIENTE == 'desenvolvimento') {
 	$config['usuario'] 		= 'root';
 	$config['senha'] 		= '';
 }else{
-	
+	define("URL_BASE", 'https://megabrownie.mikedev.com.br/');
+	$config['banco'] 		= 'mikede94_megabrownie';
+	$config['host'] 		= 'localhost:3306';
+	$config['usuario'] 	= 'mikede94_megabro';
+	$config['senha'] 		= 'MegaBrownie2021';
 }
 
 global $conexao;

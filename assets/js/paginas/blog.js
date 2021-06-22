@@ -40,6 +40,7 @@ $('#modalExNoticia').on('show.bs.modal', function(event){
 		});
 	});
 });
+
 $("#addPost").click(function(){
 		var titulo 		= $("#titulo").val();
 		var texto 		= CKEDITOR.instances.texto_blog.getData();
@@ -98,6 +99,45 @@ $("#addPost").click(function(){
 			}
 		});
 });
+
+$('#modalEdFotoNoticia').on('show.bs.modal', function(event){
+	var button = $(event.relatedTarget);
+	var id = button.data('id');
+	var modal = $(this);
+
+	modal.find('.modal-title').text('Enviar Foto da Postagem');
+
+	$("#but_upload").click(function(){
+		var data = new FormData();
+		var arquivos = $("#fotoNoticia")[0].files;
+
+		if (arquivos.length > 0) {
+			data.append('idNoticia', id);
+			data.append('fotoNoticia', arquivos[0]);
+			$.ajax({
+				type: "POST",
+				url: urlSite+"enviarFoto/",
+				data: data,
+				contentType: false,
+				processData: false,
+				success: function(dados){
+					if (dados == 1) {
+						alertaSucesso("Imagem adicionada com sucesso.");
+					}
+					else if (dados == 2) {
+						alertaAviso("Tipo de imagem inválida.");
+					}
+					else if (dados == 3) {
+						alertaAviso("O tamanho da imagem excede o permitido.");
+					}else{
+						alertaSucesso("Imagem alterada com sucesso.");
+					}
+				}
+			});
+		}
+	});
+});
+
 $("#modalEdNoticia").on('show.bs.modal', function(event){
 	var button = $(event.relatedTarget);
 	var id = button.data('id');
@@ -118,47 +158,31 @@ $("#modalEdNoticia").on('show.bs.modal', function(event){
 
 			$("#editaPost").click(function(e){
 				e.preventDefault();
-				var novos_dados 	= new FormData();
-				var nova_imagem 	= $("#edita_imagem_destaque")[0].files;
-
 				var titulo 	= $("#edita_titulo").val();
 				var texto 	= CKEDITOR.instances.edita_texto_blog.getData();
+				var slug 		= string_to_slug(titulo);
 
-				var novo_slug = string_to_slug(titulo);
-
-				novos_dados.append('id', id);
-				novos_dados.append('slug', novo_slug);
-				novos_dados.append('titulo', titulo);
-				novos_dados.append('texto', texto);
-				novos_dados.append('imagem', nova_imagem[0]);
-
-				console.log(novos_dados);
-
-				$.ajax({
-					url: urlSite+'editaPostagem/',
-					type: "POST",
-					data: novos_dados,
-					contentType: false,
-					processData: false,
-					success: function(dados){
-						alertaSucesso(dados);
-						// if (dados == 1) {
-						// 	alertaSucesso("Postagem editada com sucesso.");
-						// }
-						// else if (dados == 2) {
-						// 	alertaAviso("Tipo de imagem de destaque inválida.");
-						// }
-						// else if (dados == 3) {
-						// 	alertaAviso("O tamanho da imagem de destaque excede o permitido.");
-						// }
-						// else if(dados == 4){
-						// 	alertaAviso("Os dados são os atuais.");
-						// }
-						// else{
-						// 	alertaErro("Não foi possível editar a postagem. Tente novamente mais tarde.");
-						// }
-					}
-				});
+				if(titulo == ''){
+					alertaAviso("O campo TITULO DA POSTAGEM é obrigatório");
+				}
+				else if(texto == ''){
+					alertaAviso("O campo TEXTO é obrigatório");
+				}
+				else{
+					$.ajax({
+						url: urlSite+'editaPostagem/',
+						type: "POST",
+						data: {titulo:titulo, texto:texto, slug:slug, id:id},
+						success: function(dados){
+							if (dados == 1) {
+								alertaSucesso("Postagem editada com sucesso.");
+							}
+							else{
+								alertaErro("Não foi possível editar a postagem porque os dados enviados já são as atuais cadastradas no sistema.");
+							}
+						}
+					});
+				}
 			});
 		}
 	});

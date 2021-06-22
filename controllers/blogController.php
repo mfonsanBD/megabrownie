@@ -103,33 +103,45 @@ class BlogController extends Admin{
 			$titulo 				= addslashes(trim($_POST['titulo']));
 			$texto 					= addslashes(trim($_POST['texto']));
 			$slug 					= addslashes(trim($_POST['slug']));
-			$nova_imagem 		= addslashes(trim($_POST['imagem']));
 
-			echo $nova_imagem;
+			$blog = new Blog();
+			if ($blog->editaPostagem($titulo, $texto, $slug, $id)) {
+				echo 1;
+			}else{
+				echo 0;
+			}
+		}
+	}
+	public function enviarFoto(){
+		if (isset($_FILES['fotoNoticia'])) {
+			$id = $_POST['idNoticia'];
+			$arquivo = $_FILES['fotoNoticia'];
+			$nomeArquivo = md5($id).".jpg";
 
-			// $novo_nome_imagem 	= md5(rand(0, 99999).date("d/m/Y H:i:s")).".jpg";
+			$permitidos = array("image/png", "image/jpg", "image/jpeg");
+			$caminho = "assets/img/blog";
 
-			// if (in_array($nova_imagem['type'], $permitidos)) {
-			// 	if ($nova_imagem['size'] <= 2*1048576) {
-			// 		if (is_dir($caminho)) {
-			// 			move_uploaded_file($nova_imagem['tmp_name'], "assets/img/blog/".$novo_nome_imagem);
-			// 		}else{
-			// 			mkdir($caminho);
-			// 			move_uploaded_file($nova_imagem['tmp_name'], "assets/img/blog/".$novo_nome_imagem);
-			// 		}
-
-			// 		$blog = new Blog();
-			// 		if ($blog->editaPostagem($titulo_antigo, $texto_antigo, $novo_nome_imagem, $slug, $id)) {
-			// 			echo 1;
-			// 		}else{
-			// 			echo 0;
-			// 		}
-			// 	}else{
-			// 		echo 3;
-			// 	}
-			// }else{
-			// 	echo 2;
-			// }
+			if (in_array($arquivo['type'], $permitidos)) {
+				if ($arquivo['size'] <= 2*1048576) {
+					if (is_dir($caminho)) {
+						move_uploaded_file($arquivo['tmp_name'], "assets/img/blog/".$nomeArquivo);
+					}else{
+						mkdir($caminho);
+						move_uploaded_file($arquivo['tmp_name'], "assets/img/blog/".$nomeArquivo);
+					}
+					
+					$blog = new Blog();
+					if ($blog->enviarFoto($nomeArquivo, $id)) {
+						echo 1;
+					}else{
+						echo 0;
+					}
+				}else{
+					echo 3;
+				}
+			}else{
+				echo 2;
+			}
 		}
 	}
 	public function listaDadosId(){

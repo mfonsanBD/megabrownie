@@ -83,6 +83,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="modalExPr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content bg-light">
@@ -105,6 +106,7 @@
     </div>
   </div>
 </div>
+
 <div class="modal fade" id="addProduto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content bg-light">
@@ -163,6 +165,7 @@
     </div>
   </div>
 </div>
+
 <div class="modal fade" id="modalEdFotoPr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content bg-light">
@@ -182,6 +185,7 @@
     </div>
   </div>
 </div>
+
 <div class="modal fade" id="modalEdPr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content bg-light">

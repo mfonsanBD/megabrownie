@@ -45,9 +45,19 @@ class Blog extends Model{
 			return false;
 		}
 	}
-	public function editaPostagem($titulo, $texto, $nomeimagem, $slug, $id){
-		$sql = $this->conexao->prepare("UPDATE blog SET tituloBlog = ?, textoBlog = ?, imagemBlog = ?, slug = ? WHERE idBlog = ?");
-		$sql->execute(array($titulo, $texto, $nomeimagem, $slug, $id));
+	public function enviarFoto($nomeArquivo, $id){
+		$sql = $this->conexao->prepare("UPDATE blog SET imagemBlog = ? WHERE idBlog = ?");
+		$sql->execute(array($nomeArquivo, $id));
+
+		if ($sql->rowCount() > 0) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function editaPostagem($titulo, $texto, $slug, $id){
+		$sql = $this->conexao->prepare("UPDATE blog SET tituloBlog = ?, textoBlog = ?, slug = ? WHERE idBlog = ?");
+		$sql->execute(array($titulo, $texto, $slug, $id));
 
 		if ($sql->rowCount() > 0) {
 			return true;

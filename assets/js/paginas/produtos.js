@@ -23,6 +23,7 @@ $('#modalExPr').on('show.bs.modal', function(event){
 		});
 	});
 });
+
 $("#cadastroProduto").submit(function(e){
 		e.preventDefault();
 		var nome 		= $("#nome").val();
@@ -61,6 +62,7 @@ $("#cadastroProduto").submit(function(e){
 			});
 		}
 });
+
 $('#modalEdFotoPr').on('show.bs.modal', function(event){
 	var button = $(event.relatedTarget);
 	var id = button.data('id');
@@ -99,6 +101,7 @@ $('#modalEdFotoPr').on('show.bs.modal', function(event){
 		}
 	});
 });
+
 $('#modalEdPr').on('show.bs.modal', function(event){
 	var button 			= $(event.relatedTarget);
 	var id 				= button.data('id');
@@ -170,7 +173,9 @@ $('#modalEdPr').on('show.bs.modal', function(event){
 		});
 	});
 });
+
 $('.valor').mask('#.##0,00', {reverse: true});
+
 function alertaSucesso(texto){
 	return swal({
 		title: "Parabéns!", 

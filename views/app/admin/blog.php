@@ -48,6 +48,7 @@
                                             <td><a href="<?=URL_BASE.$ln['slug'].'/'?>"><span class="text-primary"><?=$ln['tituloBlog']?></span></a></td>
                                             <td><?=date('d/m/Y H:i:s', strtotime($ln['dataBlog']))?></td>
                                             <td class="td-actions">
+                                                <a data-toggle="modal" data-target="#modalEdFotoNoticia" data-id="<?= $ln['idBlog']; ?>"><i class="la la-camera-retro edit"></i></a>
 
                                                 <a data-toggle="modal" data-target="#modalEdNoticia" data-id="<?= $ln['idBlog']; ?>" data-titulo="<?= $ln['tituloBlog']; ?>"><i class="la la-edit edit"></i></a>
 
@@ -64,6 +65,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="modalExNoticia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content bg-light">
@@ -86,6 +88,7 @@
     </div>
   </div>
 </div>
+
 <div class="modal fade" id="addNoticia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered blog" role="document">
     <div class="modal-content bg-light">
@@ -126,6 +129,27 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="modalEdFotoNoticia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content bg-light">
+      <div class="modal-header bg-primary text-white">
+        <h3 class="modal-title text-white" id="exampleModalLabel"></h3>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <label for="fotoNoticia" class="btn bg-padrao btn-sm mt-2">Escolha a imagem da Postagem</label>
+            <div >
+                <input type="file" class="form-control mb-3" id="fotoNoticia" name="fotoNoticia" />
+                <button type="submit" class="btn btn-primary" id="but_upload">Enviar</button>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" id="modalEdNoticia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered blog" role="document">
     <div class="modal-content bg-light">
@@ -147,21 +171,6 @@
             <div class="col-lg-9">
                 <div class="input-group">
                     <textarea type="text" class="form-control" id="edita_texto_blog" name="edita_texto_blog"></textarea>
-                </div>
-            </div>
-        </div>
-        <div class="form-group row d-flex align-items-center justify-content-lg-end mb-3">
-            <div class="col-lg-9">
-                <div class="input-group">
-                    <img id="preview" width="300">
-                </div>
-            </div>
-        </div>
-        <div class="form-group row d-flex align-items-center mb-3">
-            <label class="col-lg-3 form-control-label d-flex justify-content-lg-end">Imagem de Destaque *</label>
-            <div class="col-lg-9">
-                <div class="input-group">
-                    <input type="file" class="form-control" id="edita_imagem_destaque" name="edita_imagem_destaque">
                 </div>
             </div>
         </div>
